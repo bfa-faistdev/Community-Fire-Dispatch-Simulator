@@ -1,13 +1,10 @@
 package at.faistdev.fwlstsim.bl.service;
 
 import at.faistdev.fwlstsim.dataaccess.cache.OperationCache;
-import at.faistdev.fwlstsim.dataaccess.cache.VehicleCache;
 import at.faistdev.fwlstsim.dataaccess.entities.Operation;
 import at.faistdev.fwlstsim.dataaccess.entities.OperationResource;
-import at.faistdev.fwlstsim.dataaccess.entities.Vehicle;
 import at.faistdev.fwlstsim.dataaccess.entities.VehicleStatus;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,11 +14,6 @@ public class OperationService {
         Operation operation = handler.requestOperation();
         OperationCache.getCache().add(operation);
         return operation;
-    }
-
-    private static void createDemoVehicles() {
-        Vehicle vehicle = new Vehicle(List.of(OperationResource.CHAINSAW));
-        VehicleCache.getCache().add(vehicle);
     }
 
     public static boolean isVehicleOnSite(Operation operation) {

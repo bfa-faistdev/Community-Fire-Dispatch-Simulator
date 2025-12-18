@@ -14,6 +14,10 @@ public class Game implements Runnable {
 
     private long currentTick = 1;
 
+    public void init() {
+        GameProperties.DATA_LOADER.loadDataIntoCache();
+    }
+
     @Override
     public void run() {
         requestOperationIfDemand();
