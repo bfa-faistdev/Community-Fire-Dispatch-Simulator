@@ -3,7 +3,8 @@ package at.faistdev.fwlstsim.bl.service;
 import at.faistdev.fwlstsim.bl.util.DurationUtil;
 import at.faistdev.fwlstsim.bl.util.RandomUtil;
 import at.faistdev.fwlstsim.dataaccess.cache.OperationKeywordCache;
-import at.faistdev.fwlstsim.dataaccess.entities.LatLng;
+import at.faistdev.fwlstsim.dataaccess.entities.LatLngLocation;
+import at.faistdev.fwlstsim.dataaccess.entities.Location;
 import at.faistdev.fwlstsim.dataaccess.entities.Operation;
 import at.faistdev.fwlstsim.dataaccess.entities.OperationKeyword;
 import at.faistdev.fwlstsim.dataaccess.entities.OperationResource;
@@ -30,7 +31,7 @@ public class DemoOperationHandler extends OperationHandler {
     private Operation requestDemoOperation(OperationKeyword keyword) {
         long id = 1;
         String callText = "Hallo, mir ist mein Auto in den Graben gerutscht und ich komme nicht mehr raus.";
-        LatLng location = new LatLng(0, 0);
+        Location location = new LatLngLocation(0, 0);
         Set<OperationResource> resources = new HashSet<>();
         long duration = DurationUtil.getMinutes(45);
 

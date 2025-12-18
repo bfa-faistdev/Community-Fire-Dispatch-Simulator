@@ -9,7 +9,7 @@ public class Operation {
 
     private final long id;
     private final String callText;
-    private final LatLng location;
+    private final Location location;
     private final OperationKeyword operationKeyword;
     private final long durationAfterAllResourcesOnSiteInTicks;
 
@@ -21,7 +21,7 @@ public class Operation {
     private long lastResourceRequest = 0;
     private long progressInTicks = 0;
 
-    public Operation(long id, String callText, LatLng location, OperationKeyword operationKeyword,
+    public Operation(long id, String callText, Location location, OperationKeyword operationKeyword,
             Set<OperationResource> initialRequiredResources, long durationAfterAllResourcesOnSiteInTicks) {
         this.id = id;
         this.callText = callText;
@@ -41,7 +41,7 @@ public class Operation {
         return callText;
     }
 
-    public LatLng getLocation() {
+    public Location getLocation() {
         return location;
     }
 

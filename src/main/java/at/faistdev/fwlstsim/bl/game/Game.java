@@ -60,7 +60,7 @@ public class Game implements Runnable {
     private void doRoutingAndStatusUpdates() {
         ArrayList<Vehicle> vehicles = VehicleCache.getCache().getAll();
         for (Vehicle vehicle : vehicles) {
-            RoutingService.doRouting(currentTick, vehicle);
+            RoutingService.doRouting(vehicle);
         }
     }
 

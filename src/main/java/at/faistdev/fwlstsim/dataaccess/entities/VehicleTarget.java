@@ -1,17 +1,21 @@
 package at.faistdev.fwlstsim.dataaccess.entities;
 
-public abstract class VehicleTarget {
+public class VehicleTarget {
 
+    private final Location location;
     private final VehicleStatus newVehicleStatus;
 
-    public VehicleTarget(VehicleStatus newVehicleStatus) {
+    public VehicleTarget(Location location, VehicleStatus newVehicleStatus) {
+        this.location = location;
         this.newVehicleStatus = newVehicleStatus;
     }
 
-    public abstract boolean isReachedTarget(long currentTick);
-
     public VehicleStatus getNewVehicleStatus() {
         return newVehicleStatus;
+    }
+
+    public Location getLocation() {
+        return location;
     }
 
 }

@@ -7,12 +7,17 @@ public class Vehicle {
 
     private final List<OperationResource> resources;
     private VehicleStatus status;
+    private final VehicleHome home;
+    private Location currentLocation;
     private final List<VehicleTarget> targets = new ArrayList<>();
     private final List<RadioMessage> pendingRadioMessages = new ArrayList<>();
 
-    public Vehicle(List<OperationResource> resources) {
-        status = VehicleStatus.STATUS_9;
+    public Vehicle(VehicleHome home, List<OperationResource> resources) {
+        this.home = home;
         this.resources = resources;
+
+        currentLocation = home.getLocationCopy();
+        status = VehicleStatus.STATUS_9;
     }
 
     public VehicleStatus getStatus() {
@@ -54,4 +59,17 @@ public class Vehicle {
 
         return pendingRadioMessages.get(0);
     }
+
+    public VehicleHome getHome() {
+        return home;
+    }
+
+    public Location getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public void setCurrentLocation(Location currentLocation) {
+        this.currentLocation = currentLocation;
+    }
+
 }
