@@ -21,15 +21,11 @@ public class Game implements Runnable {
     @Override
     public void run() {
         requestOperationIfDemand();
+        doRoutingAndStatusUpdates();
 
         List<Operation> operations = OperationCache.getCache().getAll();
         for (Operation operation : operations) {
-            doRoutingAndStatusUpdates();
-
             executeNextTask(operation);
-
-            // ToDo: Update progress
-            // ToDo: Is Operation finished --> Send vehicles home
         }
     }
 
@@ -50,13 +46,15 @@ public class Game implements Runnable {
             return;
         }
 
-        if (task.isReadyToExecute() == false) {
+        if (task.isReadyToExecute(operation) == false) {
             return;
         }
 
-        task.execute();
+        task.execute(operation);
 
-        operation.removeTask(task);
+        if (task.isFinished(operation)) {
+            operation.removeTask(task);
+        }
     }
 
     private void doRoutingAndStatusUpdates() {
@@ -65,4 +63,5 @@ public class Game implements Runnable {
             RoutingService.doRouting(currentTick, vehicle);
         }
     }
+
 }

@@ -9,27 +9,24 @@ import java.util.Set;
 
 public class FirstVehicleArrivedTask extends OperationTask {
 
-    private final Operation operation;
-
     private final String initialRadioMessageText;
 
-    public FirstVehicleArrivedTask(Operation operation, String initialRadioMessageText) {
-        this.operation = operation;
+    public FirstVehicleArrivedTask(String initialRadioMessageText) {
         this.initialRadioMessageText = initialRadioMessageText;
     }
 
     @Override
-    public boolean isReadyToExecute() {
+    public boolean isReadyToExecute(Operation operation) {
         return OperationService.isVehicleOnSite(operation);
     }
 
     @Override
-    public void execute() {
+    public void execute(Operation operation) {
         String message = initialRadioMessageText;
 
         if (OperationService.isNeedToRequestAdditionalResources(operation)) {
             message += " Weitere Resourcen an der Einsatzstelle benötigt: ";
-            Set<OperationResource> additionalNeededResources = OperationService.getAdditionalNeededResources(operation);
+            Set<OperationResource> additionalNeededResources = OperationService.getAdditionalNeededResourcesDispatched(operation);
             for (OperationResource resource : additionalNeededResources) {
                 message += resource.getText() + ", ";
             }
@@ -39,6 +36,11 @@ public class FirstVehicleArrivedTask extends OperationTask {
 
         Vehicle leadVehicle = OperationService.getLeadVehicleOnSite(operation);
         leadVehicle.addRadioMessage(new RadioMessage(message));
+    }
+
+    @Override
+    public boolean isFinished(Operation operation) {
+        return true;
     }
 
 }

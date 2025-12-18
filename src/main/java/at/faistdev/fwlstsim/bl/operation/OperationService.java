@@ -28,7 +28,7 @@ public class OperationService {
                 .collect(Collectors.toList());
     }
 
-    public static Set<OperationResource> getAdditionalNeededResources(Operation operation) {
+    public static Set<OperationResource> getAdditionalNeededResourcesDispatched(Operation operation) {
         Set<OperationResource> required = operation.getRequiredResources();
         Set<OperationResource> dispatched = getDispatchedResources(operation);
         Set<OperationResource> additionalNeeded = new HashSet<>();
@@ -42,8 +42,8 @@ public class OperationService {
         return additionalNeeded;
     }
 
-    public static boolean isResourceRequired(Operation operation) {
-        return getAdditionalNeededResources(operation).size() > 0;
+    public static boolean isResourceRequiredDispatched(Operation operation) {
+        return getAdditionalNeededResourcesDispatched(operation).size() > 0;
     }
 
     private static Set<OperationResource> getDispatchedResources(Operation operation) {
@@ -52,7 +52,7 @@ public class OperationService {
 
     public static boolean isNeedToRequestAdditionalResources(Operation operation) {
         return isVehicleOnSite(operation) && operation.getLastResourceRequest() == 0
-                && isResourceRequired(operation);
+                && isResourceRequiredDispatched(operation);
     }
 
     public static Vehicle getLeadVehicleOnSite(Operation operation) {
@@ -62,5 +62,30 @@ public class OperationService {
         }
 
         return vehiclesOnSite.get(0);
+    }
+
+    private static Set<OperationResource> getOnSiteResources(Operation operation) {
+        return operation.getVehicles().stream()//
+                .filter(v -> v.getStatus() == VehicleStatus.STATUS_3)//
+                .flatMap(v -> v.getResources().stream())//
+                .collect(Collectors.toSet());
+    }
+
+    public static Set<OperationResource> getAdditionalNeededResourcesOnSite(Operation operation) {
+        Set<OperationResource> required = operation.getRequiredResources();
+        Set<OperationResource> onSite = getOnSiteResources(operation);
+        Set<OperationResource> additionalNeeded = new HashSet<>();
+
+        for (OperationResource requiredResource : required) {
+            if (!onSite.contains(requiredResource)) {
+                additionalNeeded.add(requiredResource);
+            }
+        }
+
+        return additionalNeeded;
+    }
+
+    public static boolean isResourceRequiredOnSite(Operation operation) {
+        return getAdditionalNeededResourcesOnSite(operation).size() > 0;
     }
 }

@@ -11,6 +11,7 @@ public class Operation {
     private final String callText;
     private final LatLng location;
     private final OperationKeyword operationKeyword;
+    private final long durationAfterAllResourcesOnSiteInTicks;
 
     private final Set<OperationResource> requiredResources;
 
@@ -18,9 +19,10 @@ public class Operation {
     private final List<OperationTask> pendingTasks;
 
     private long lastResourceRequest = 0;
+    private long progressInTicks = 0;
 
     public Operation(long id, String callText, LatLng location, OperationKeyword operationKeyword,
-            Set<OperationResource> initialRequiredResources) {
+            Set<OperationResource> initialRequiredResources, long durationAfterAllResourcesOnSiteInTicks) {
         this.id = id;
         this.callText = callText;
         this.location = location;
@@ -28,6 +30,7 @@ public class Operation {
         this.requiredResources = initialRequiredResources;
         this.vehicles = new ArrayList<>();
         this.pendingTasks = new ArrayList<>();
+        this.durationAfterAllResourcesOnSiteInTicks = durationAfterAllResourcesOnSiteInTicks;
     }
 
     public long getId() {
@@ -77,4 +80,17 @@ public class Operation {
     public void removeTask(OperationTask task) {
         pendingTasks.remove(task);
     }
+
+    public long getDurationAfterAllResourcesOnSiteInTicks() {
+        return durationAfterAllResourcesOnSiteInTicks;
+    }
+
+    public void increaseProgressInTicks() {
+        progressInTicks++;
+    }
+
+    public long getProgressInTicks() {
+        return progressInTicks;
+    }
+
 }
