@@ -4,6 +4,7 @@ import at.faistdev.fwlstsim.bl.service.OperationService;
 import at.faistdev.fwlstsim.dataaccess.entities.Operation;
 import at.faistdev.fwlstsim.dataaccess.entities.OperationResource;
 import at.faistdev.fwlstsim.dataaccess.entities.RadioMessage;
+import at.faistdev.fwlstsim.dataaccess.entities.Vehicle;
 import java.util.Set;
 
 public class FirstVehicleArrivedTask extends OperationTask {
@@ -36,7 +37,8 @@ public class FirstVehicleArrivedTask extends OperationTask {
             message += " Keine weiteren Kräfte benötigt.";
         }
 
-        operation.addRadioMessage(new RadioMessage(message));
+        Vehicle leadVehicle = OperationService.getLeadVehicleOnSite(operation);
+        leadVehicle.addRadioMessage(new RadioMessage(message));
     }
 
 }

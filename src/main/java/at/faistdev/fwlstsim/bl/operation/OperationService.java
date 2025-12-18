@@ -3,8 +3,10 @@ package at.faistdev.fwlstsim.bl.service;
 import at.faistdev.fwlstsim.dataaccess.cache.OperationCache;
 import at.faistdev.fwlstsim.dataaccess.entities.Operation;
 import at.faistdev.fwlstsim.dataaccess.entities.OperationResource;
+import at.faistdev.fwlstsim.dataaccess.entities.Vehicle;
 import at.faistdev.fwlstsim.dataaccess.entities.VehicleStatus;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,7 +19,13 @@ public class OperationService {
     }
 
     public static boolean isVehicleOnSite(Operation operation) {
-        return operation.getVehicles().stream().filter(v -> v.getStatus() == VehicleStatus.STATUS_6).count() > 0;
+        return getVehiclesOnSite(operation).size() > 0;
+    }
+
+    public static List<Vehicle> getVehiclesOnSite(Operation operation) {
+        return operation.getVehicles().stream()//
+                .filter(v -> v.getStatus() == VehicleStatus.STATUS_6)//
+                .collect(Collectors.toList());
     }
 
     public static Set<OperationResource> getAdditionalNeededResources(Operation operation) {
@@ -45,5 +53,14 @@ public class OperationService {
     public static boolean isNeedToRequestAdditionalResources(Operation operation) {
         return isVehicleOnSite(operation) && operation.getLastResourceRequest() == 0
                 && isResourceRequired(operation);
+    }
+
+    public static Vehicle getLeadVehicleOnSite(Operation operation) {
+        List<Vehicle> vehiclesOnSite = getVehiclesOnSite(operation);
+        if (vehiclesOnSite.isEmpty()) {
+            return null;
+        }
+
+        return vehiclesOnSite.get(0);
     }
 }

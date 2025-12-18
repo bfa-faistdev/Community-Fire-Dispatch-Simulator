@@ -8,6 +8,7 @@ public class Vehicle {
     private final List<OperationResource> resources;
     private VehicleStatus status;
     private final List<VehicleTarget> targets = new ArrayList<>();
+    private final List<RadioMessage> pendingRadioMessages = new ArrayList<>();
 
     public Vehicle(List<OperationResource> resources) {
         status = VehicleStatus.STATUS_9;
@@ -40,5 +41,17 @@ public class Vehicle {
         }
 
         return targets.get(0);
+    }
+
+    public void addRadioMessage(RadioMessage message) {
+        pendingRadioMessages.add(message);
+    }
+
+    public RadioMessage getNextRadioMessage() {
+        if (pendingRadioMessages.isEmpty()) {
+            return null;
+        }
+
+        return pendingRadioMessages.get(0);
     }
 }

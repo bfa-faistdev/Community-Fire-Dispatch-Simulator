@@ -15,7 +15,6 @@ public class Operation {
     private final Set<OperationResource> requiredResources;
 
     private final List<Vehicle> vehicles;
-    private final List<RadioMessage> pendingRadioMessages;
     private final List<OperationTask> pendingTasks;
 
     private long lastResourceRequest = 0;
@@ -28,7 +27,6 @@ public class Operation {
         this.operationKeyword = operationKeyword;
         this.requiredResources = initialRequiredResources;
         this.vehicles = new ArrayList<>();
-        this.pendingRadioMessages = new ArrayList<>();
         this.pendingTasks = new ArrayList<>();
     }
 
@@ -62,18 +60,6 @@ public class Operation {
 
     public void setLastResourceRequest(long lastResourceRequest) {
         this.lastResourceRequest = lastResourceRequest;
-    }
-
-    public void addRadioMessage(RadioMessage message) {
-        pendingRadioMessages.add(message);
-    }
-
-    public RadioMessage getNextRadioMessage() {
-        if (pendingRadioMessages.isEmpty()) {
-            return null;
-        }
-
-        return pendingRadioMessages.get(0);
     }
 
     public void addTask(OperationTask task) {
