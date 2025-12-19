@@ -5,6 +5,7 @@ import at.faistdev.fwlstsim.dataaccess.entities.Operation;
 import at.faistdev.fwlstsim.dataaccess.entities.OperationResource;
 import at.faistdev.fwlstsim.dataaccess.entities.Vehicle;
 import at.faistdev.fwlstsim.dataaccess.entities.VehicleStatus;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -46,7 +47,7 @@ public class OperationService {
         return getAdditionalNeededResourcesDispatched(operation).size() > 0;
     }
 
-    private static Set<OperationResource> getDispatchedResources(Operation operation) {
+    public static Set<OperationResource> getDispatchedResources(Operation operation) {
         return operation.getVehicles().stream().flatMap(v -> v.getResources().stream()).collect(Collectors.toSet());
     }
 
@@ -64,7 +65,7 @@ public class OperationService {
         return vehiclesOnSite.get(0);
     }
 
-    private static Set<OperationResource> getOnSiteResources(Operation operation) {
+    public static Set<OperationResource> getOnSiteResources(Operation operation) {
         return operation.getVehicles().stream()//
                 .filter(v -> v.getStatus() == VehicleStatus.STATUS_3)//
                 .flatMap(v -> v.getResources().stream())//
@@ -87,5 +88,17 @@ public class OperationService {
 
     public static boolean isResourceRequiredOnSite(Operation operation) {
         return getAdditionalNeededResourcesOnSite(operation).size() > 0;
+    }
+
+    public static boolean isVehicleDispatched(Vehicle vehicle) {
+        ArrayList<Operation> allOperations = OperationCache.getCache().getAll();
+        for (Operation operation : allOperations) {
+            List<Vehicle> dispatchedVehicles = operation.getVehicles();
+            if (dispatchedVehicles.contains(vehicle)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

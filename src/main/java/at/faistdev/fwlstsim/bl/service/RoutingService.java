@@ -9,15 +9,18 @@ public class RoutingService {
 
     public static void doRouting(Vehicle vehicle) {
         VehicleTarget nextTarget = vehicle.getNextTarget();
+        if (nextTarget == null) {
+            return;
+        }
+
+        if (isVehicleDispatchedAndNeedsStatusUpdate(vehicle)) {
+            vehicle.setStatus(VehicleStatus.STATUS_3);
+        }
+
         moveNextRoutingPoint(vehicle, nextTarget.getLocation());
 
         if (hasReachedTarget(vehicle, nextTarget)) {
-            VehicleStatus newVehicleStatus = nextTarget.getNewVehicleStatus();
-            if (newVehicleStatus != null) {
-                vehicle.setStatus(newVehicleStatus);
-            }
-
-            vehicle.removeTarget(nextTarget);
+            handleReachedTarget(vehicle, nextTarget);
         }
     }
 
@@ -27,5 +30,19 @@ public class RoutingService {
 
     private static void moveNextRoutingPoint(Vehicle vehicle, Location location) {
         vehicle.setCurrentLocation(location);
+    }
+
+    private static boolean isVehicleDispatchedAndNeedsStatusUpdate(Vehicle vehicle) {
+        boolean vehicleDispatched = OperationService.isVehicleDispatched(vehicle);
+        return vehicleDispatched && vehicle.getStatus() != VehicleStatus.STATUS_3;
+    }
+
+    private static void handleReachedTarget(Vehicle vehicle, VehicleTarget nextTarget) {
+        VehicleStatus newVehicleStatus = nextTarget.getNewVehicleStatus();
+        if (newVehicleStatus != null) {
+            vehicle.setStatus(newVehicleStatus);
+        }
+
+        vehicle.removeTarget(nextTarget);
     }
 }
