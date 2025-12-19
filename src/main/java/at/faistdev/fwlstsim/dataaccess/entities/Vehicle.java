@@ -72,4 +72,9 @@ public class Vehicle {
         this.currentLocation = currentLocation;
     }
 
+    public void sendHome() {
+        targets.clear();
+        addTarget(new VehicleTarget(home.getLocationCopy(), null));
+        setStatus(VehicleStatus.STATUS_9);
+    }
 }

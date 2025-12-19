@@ -1,0 +1,28 @@
+package at.faistdev.fwlstsim.dataaccess.tasks;
+
+import at.faistdev.fwlstsim.dataaccess.entities.Operation;
+import at.faistdev.fwlstsim.dataaccess.entities.Vehicle;
+import java.util.List;
+
+public class OperationFinishedTask extends OperationTask {
+
+    @Override
+    public boolean isReadyToExecute(Operation operation) {
+        return operation.getProgressInPercent() == 100;
+    }
+
+    @Override
+    public void execute(Operation operation) {
+        List<Vehicle> vehicles = operation.getVehicles();
+        for (Vehicle vehicle : vehicles) {
+            operation.removeVehicle(vehicle);
+            vehicle.sendHome();
+        }
+    }
+
+    @Override
+    public boolean isFinished(Operation operation) {
+        return true;
+    }
+
+}

@@ -93,4 +93,17 @@ public class Operation {
         return progressInTicks;
     }
 
+    public int getProgressInPercent() {
+        int progress = (int) (progressInTicks / durationAfterAllResourcesOnSiteInTicks);
+
+        if (progress > 100) {
+            progress = 100;
+        }
+
+        return progress;
+    }
+
+    public void removeVehicle(Vehicle vehicle) {
+        vehicles.remove(vehicle);
+    }
 }

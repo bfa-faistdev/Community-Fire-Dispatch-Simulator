@@ -27,6 +27,8 @@ public class Game implements Runnable {
         for (Operation operation : operations) {
             executeNextTask(operation);
         }
+
+        currentTick++;
     }
 
     private void requestOperationIfDemand() {
