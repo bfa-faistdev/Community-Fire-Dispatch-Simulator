@@ -3,6 +3,7 @@ package at.faistdev.fwlstsim.bl.service;
 import at.faistdev.fwlstsim.dataaccess.cache.OperationCache;
 import at.faistdev.fwlstsim.dataaccess.entities.Operation;
 import at.faistdev.fwlstsim.dataaccess.entities.OperationResource;
+import at.faistdev.fwlstsim.dataaccess.entities.OperationStatus;
 import at.faistdev.fwlstsim.dataaccess.entities.Vehicle;
 import at.faistdev.fwlstsim.dataaccess.entities.VehicleStatus;
 import java.util.ArrayList;
@@ -100,5 +101,12 @@ public class OperationService {
         }
 
         return false;
+    }
+
+    public static List<Operation> getUnansweredOperations() {
+        ArrayList<Operation> operations = OperationCache.getCache().getAll();
+        return operations.stream()//
+                .filter(op -> op.getStatus() == OperationStatus.INITAL)//
+                .collect(Collectors.toList());
     }
 }

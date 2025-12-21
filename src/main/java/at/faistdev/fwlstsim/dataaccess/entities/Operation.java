@@ -8,6 +8,7 @@ import java.util.Set;
 public class Operation {
 
     private final long id;
+    private final String callingNumber;
     private final String callText;
     private final Location location;
     private final OperationKeyword operationKeyword;
@@ -20,11 +21,13 @@ public class Operation {
 
     private long lastResourceRequest = 0;
     private long progressInTicks = 0;
+    private OperationStatus status = OperationStatus.INITAL;
 
-    public Operation(long id, String callText, Location location, OperationKeyword operationKeyword,
+    public Operation(long id, String callText, String callingNumber, Location location, OperationKeyword operationKeyword,
             Set<OperationResource> initialRequiredResources, long durationAfterAllResourcesOnSiteInTicks) {
         this.id = id;
         this.callText = callText;
+        this.callingNumber = callingNumber;
         this.location = location;
         this.operationKeyword = operationKeyword;
         this.requiredResources = initialRequiredResources;
@@ -106,4 +109,17 @@ public class Operation {
     public void removeVehicle(Vehicle vehicle) {
         vehicles.remove(vehicle);
     }
+
+    public OperationStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OperationStatus status) {
+        this.status = status;
+    }
+
+    public String getCallingNumber() {
+        return callingNumber;
+    }
+
 }

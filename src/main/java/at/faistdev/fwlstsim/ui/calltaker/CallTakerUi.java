@@ -4,6 +4,12 @@
  */
 package at.faistdev.fwlstsim.ui.calltaker;
 
+import at.faistdev.fwlstsim.bl.service.OperationService;
+import at.faistdev.fwlstsim.dataaccess.entities.Operation;
+import java.util.List;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Ben
@@ -17,10 +23,29 @@ public class CallTakerUi extends javax.swing.JFrame {
      */
     public CallTakerUi() {
         initComponents();
+        refreshIncomingCalls();
     }
 
     private void refreshIncomingCalls() {
+        incomingCallsPanel.removeAll();
+        List<Operation> unansweredOperations = OperationService.getUnansweredOperations();
+        for (Operation operation : unansweredOperations) {
+            JPanel newCallPanel = createNewIncomingCallElement(operation.getCallingNumber());
+            incomingCallsPanel.add(newCallPanel);
+        }
+    }
 
+    private JPanel createNewIncomingCallElement(String callingNumber) {
+        JPanel callPanel = new JPanel();
+        callPanel.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1)));
+        callPanel.setMaximumSize(new java.awt.Dimension(32767, 50));
+        callPanel.setLayout(new java.awt.GridLayout());
+
+        JLabel label = new JLabel();
+        label.setText(callingNumber);
+        callPanel.add(label);
+
+        return callPanel;
     }
 
     /**
@@ -34,7 +59,7 @@ public class CallTakerUi extends javax.swing.JFrame {
 
         leftPanel = new javax.swing.JPanel();
         incomingCallsPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        call1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         callPromptsPanel = new javax.swing.JPanel();
         rightPanel = new javax.swing.JPanel();
@@ -44,20 +69,21 @@ public class CallTakerUi extends javax.swing.JFrame {
         talkingPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Anrufe");
         getContentPane().setLayout(new java.awt.GridLayout(1, 2));
 
         leftPanel.setLayout(new java.awt.GridLayout(2, 0));
 
         incomingCallsPanel.setLayout(new javax.swing.BoxLayout(incomingCallsPanel, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1)));
-        jPanel1.setMaximumSize(new java.awt.Dimension(32767, 50));
-        jPanel1.setLayout(new java.awt.GridLayout());
+        call1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1)));
+        call1.setMaximumSize(new java.awt.Dimension(32767, 50));
+        call1.setLayout(new java.awt.GridLayout());
 
         jLabel1.setText("+43 6649601122");
-        jPanel1.add(jLabel1);
+        call1.add(jLabel1);
 
-        incomingCallsPanel.add(jPanel1);
+        incomingCallsPanel.add(call1);
 
         leftPanel.add(incomingCallsPanel);
 
@@ -110,10 +136,7 @@ public class CallTakerUi extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    public static void create() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -138,11 +161,11 @@ public class CallTakerUi extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel actionPanel;
     private javax.swing.JButton btnPickUpCall;
+    private javax.swing.JPanel call1;
     private javax.swing.JPanel callPromptsPanel;
     private javax.swing.JPanel connectedCallPanel;
     private javax.swing.JPanel incomingCallsPanel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JPanel rightPanel;
     private javax.swing.JPanel talkingPanel;

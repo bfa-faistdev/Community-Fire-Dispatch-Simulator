@@ -4,6 +4,7 @@
 package at.faistdev.fwlstsim;
 
 import at.faistdev.fwlstsim.bl.game.Game;
+import at.faistdev.fwlstsim.ui.calltaker.CallTakerUi;
 
 /**
  *
@@ -17,5 +18,7 @@ public class FwLstSim {
 
         Thread gameThread = new Thread(game);
         gameThread.start();
+
+        CallTakerUi.create();
     }
 }

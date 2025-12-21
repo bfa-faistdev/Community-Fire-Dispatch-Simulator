@@ -20,15 +20,24 @@ public class Game implements Runnable {
 
     @Override
     public void run() {
-        requestOperationIfDemand();
-        doRoutingAndStatusUpdates();
+        while (true) {
+            requestOperationIfDemand();
+            doRoutingAndStatusUpdates();
 
-        List<Operation> operations = OperationCache.getCache().getAll();
-        for (Operation operation : operations) {
-            executeNextTask(operation);
+            List<Operation> operations = OperationCache.getCache().getAll();
+            for (Operation operation : operations) {
+                executeNextTask(operation);
+            }
+
+            currentTick++;
+            System.out.println("Current Tick = " + currentTick);
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                System.getLogger(Game.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            }
         }
-
-        currentTick++;
     }
 
     private void requestOperationIfDemand() {
