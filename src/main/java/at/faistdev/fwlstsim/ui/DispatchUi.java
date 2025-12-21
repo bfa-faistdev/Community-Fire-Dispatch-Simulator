@@ -119,7 +119,7 @@ public class DispatchUi extends javax.swing.JFrame {
 
     private VehiclePanel createSelectVehiclePanel(Vehicle vehicle) {
         VehiclePanel panel = new VehiclePanel(vehicle);
-        JTextField statusField = new JTextField();
+        JLabel statusField = new JLabel();
         JLabel vehicleLabel = new JLabel();
         JCheckBox checkBox = new JCheckBox();
 
@@ -127,10 +127,11 @@ public class DispatchUi extends javax.swing.JFrame {
         panel.setMaximumSize(new java.awt.Dimension(32767, 23));
         panel.setLayout(new java.awt.GridLayout(1, 3));
 
-        statusField.setEnabled(false);
+        statusField.setOpaque(true);
         statusField.setBackground(VehicleStatusUtil.getColor(vehicle.getStatus()));
-        statusField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        statusField.setHorizontalAlignment(javax.swing.JLabel.CENTER);
         statusField.setText(vehicle.getStatus().getText());
+        statusField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 5, 1), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
         panel.add(statusField);
 
         vehicleLabel.setBackground(new java.awt.Color(255, 255, 255));
@@ -160,10 +161,10 @@ public class DispatchUi extends javax.swing.JFrame {
         panel.setMaximumSize(new java.awt.Dimension(32767, 23));
         panel.setLayout(new javax.swing.BoxLayout(panel, javax.swing.BoxLayout.X_AXIS));
 
+        statusField.setEnabled(false);
         statusField.setBackground(VehicleStatusUtil.getColor(vehicle.getStatus()));
         statusField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         statusField.setText(vehicle.getStatus().getText());
-        statusField.setEnabled(false);
         statusField.setMaximumSize(new java.awt.Dimension(50, 2147483647));
         panel.add(statusField);
 
@@ -345,6 +346,7 @@ public class DispatchUi extends javax.swing.JFrame {
         callerNumberLabel.setMaximumSize(new java.awt.Dimension(1000, 16));
         callerNumberPanel.add(callerNumberLabel);
 
+        callerNumberField.setBackground(new java.awt.Color(242, 242, 242));
         callerNumberField.setAlignmentX(0.0F);
         callerNumberField.setEnabled(false);
         callerNumberPanel.add(callerNumberField);
