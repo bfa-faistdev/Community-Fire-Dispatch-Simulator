@@ -23,10 +23,16 @@ public class DemoDataLoader extends PersistentDataLoader {
     }
 
     private void loadVehicles() {
-        VehicleHome vehicleHome = new VehicleHome("FF Demo", new LatLngLocation(0, 0));
+        VehicleHome vehicleHome = new VehicleHome("FF Blumegg Teipl", new LatLngLocation(0, 0));
 
-        Vehicle vehicle = new Vehicle(vehicleHome, List.of(OperationResource.CHAINSAW));
-        VehicleCache.getCache().add(vehicle);
+        {
+            Vehicle vehicle = new Vehicle("TLF 1000 Blumegg Teipl", vehicleHome, List.of(OperationResource.CHAINSAW));
+            VehicleCache.getCache().add(vehicle);
+        }
+        {
+            Vehicle vehicle = new Vehicle("LFB-A Blumegg Teipl", vehicleHome, List.of(OperationResource.CHAINSAW));
+            VehicleCache.getCache().add(vehicle);
+        }
     }
 
 }

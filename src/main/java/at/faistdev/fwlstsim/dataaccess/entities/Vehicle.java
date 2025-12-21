@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Vehicle {
 
+    private final String name;
     private final List<OperationResource> resources;
     private VehicleStatus status;
     private final VehicleHome home;
@@ -12,7 +13,8 @@ public class Vehicle {
     private final List<VehicleTarget> targets = new ArrayList<>();
     private final List<RadioMessage> pendingRadioMessages = new ArrayList<>();
 
-    public Vehicle(VehicleHome home, List<OperationResource> resources) {
+    public Vehicle(String name, VehicleHome home, List<OperationResource> resources) {
+        this.name = name;
         this.home = home;
         this.resources = resources;
 
@@ -77,4 +79,9 @@ public class Vehicle {
         addTarget(new VehicleTarget(home.getLocationCopy(), null));
         setStatus(VehicleStatus.STATUS_9);
     }
+
+    public String getName() {
+        return name;
+    }
+
 }

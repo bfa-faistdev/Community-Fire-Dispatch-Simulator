@@ -4,6 +4,14 @@
  */
 package at.faistdev.fwlstsim.ui;
 
+import at.faistdev.fwlstsim.dataaccess.cache.VehicleCache;
+import at.faistdev.fwlstsim.dataaccess.entities.Vehicle;
+import java.util.ArrayList;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Ben
@@ -20,7 +28,47 @@ public class DispatchUi extends javax.swing.JFrame {
     }
 
     private void onSelectVehiclesBtnClick() {
+        selectVehiclesDialog.setVisible(true);
+        loadAllVehiclesIntoSelectVehiclesDialog();
+    }
 
+    private void loadAllVehiclesIntoSelectVehiclesDialog() {
+        innerSelectVehiclesScrollPanel.removeAll();
+
+        ArrayList<Vehicle> allVehicles = VehicleCache.getCache().getAll();
+        for (Vehicle vehicle : allVehicles) {
+            JPanel panel = createSelectVehiclePanel(vehicle);
+            innerSelectVehiclesScrollPanel.add(panel);
+        }
+    }
+
+    private JPanel createSelectVehiclePanel(Vehicle vehicle) {
+        JPanel panel = new JPanel();
+        JTextField statusField = new JTextField();
+        JLabel vehicleLabel = new JLabel();
+        JCheckBox checkBox = new JCheckBox();
+
+        panel.setBackground(new java.awt.Color(255, 255, 255));
+        panel.setMaximumSize(new java.awt.Dimension(32767, 23));
+        panel.setLayout(new java.awt.GridLayout(1, 3));
+
+        statusField.setBackground(VehicleStatusUtil.getColor(vehicle.getStatus()));
+        statusField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        statusField.setText(vehicle.getStatus().getText());
+        statusField.setEnabled(false);
+        panel.add(statusField);
+
+        vehicleLabel.setBackground(new java.awt.Color(255, 255, 255));
+        vehicleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        vehicleLabel.setText(vehicle.getName());
+        vehicleLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10));
+        panel.add(vehicleLabel);
+
+        checkBox.setBackground(new java.awt.Color(255, 255, 255));
+        checkBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        panel.add(checkBox);
+
+        return panel;
     }
 
     /**
@@ -38,10 +86,6 @@ public class DispatchUi extends javax.swing.JFrame {
         saveVehiclesButton = new javax.swing.JButton();
         selectVehiclesScrollPanel = new javax.swing.JScrollPane();
         innerSelectVehiclesScrollPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
         toolPanel = new javax.swing.JPanel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         selectVehiclesButton = new javax.swing.JButton();
@@ -69,6 +113,8 @@ public class DispatchUi extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jCheckBox2 = new javax.swing.JCheckBox();
 
+        selectVehiclesDialog.setTitle("Fahrzeug zuweisen");
+        selectVehiclesDialog.setMinimumSize(new java.awt.Dimension(600, 300));
         selectVehiclesDialog.getContentPane().setLayout(new javax.swing.BoxLayout(selectVehiclesDialog.getContentPane(), javax.swing.BoxLayout.Y_AXIS));
 
         toolbarPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -87,34 +133,12 @@ public class DispatchUi extends javax.swing.JFrame {
 
         innerSelectVehiclesScrollPanel.setBackground(new java.awt.Color(255, 255, 255));
         innerSelectVehiclesScrollPanel.setLayout(new javax.swing.BoxLayout(innerSelectVehiclesScrollPanel, javax.swing.BoxLayout.Y_AXIS));
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setMaximumSize(new java.awt.Dimension(32767, 23));
-        jPanel1.setLayout(new java.awt.GridLayout(1, 3));
-
-        jTextField1.setBackground(new java.awt.Color(255, 255, 153));
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("3");
-        jTextField1.setEnabled(false);
-        jPanel1.add(jTextField1);
-
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("TLF 1000 Blumegg Teipl");
-        jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10));
-        jPanel1.add(jLabel1);
-
-        jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(jCheckBox1);
-
-        innerSelectVehiclesScrollPanel.add(jPanel1);
-
         selectVehiclesScrollPanel.setViewportView(innerSelectVehiclesScrollPanel);
 
         selectVehiclesDialog.getContentPane().add(selectVehiclesScrollPanel);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Einsatzverwaltung");
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(960, 540));
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
@@ -244,10 +268,7 @@ public class DispatchUi extends javax.swing.JFrame {
         onSelectVehiclesBtnClick();
     }//GEN-LAST:event_selectVehiclesButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    public static void create() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -287,13 +308,9 @@ public class DispatchUi extends javax.swing.JFrame {
     private javax.swing.JPanel infoTextPanel;
     private javax.swing.JPanel innerAssignedVehiclesScrollPanel;
     private javax.swing.JPanel innerSelectVehiclesScrollPanel;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JComboBox<String> keywordComboBox;
     private javax.swing.JLabel keywordLabel;

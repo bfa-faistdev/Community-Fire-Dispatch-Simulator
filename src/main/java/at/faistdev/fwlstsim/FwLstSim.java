@@ -5,6 +5,7 @@ package at.faistdev.fwlstsim;
 
 import at.faistdev.fwlstsim.bl.game.Game;
 import at.faistdev.fwlstsim.ui.CallTakerUi;
+import at.faistdev.fwlstsim.ui.DispatchUi;
 
 /**
  *
@@ -20,5 +21,6 @@ public class FwLstSim {
         gameThread.start();
 
         CallTakerUi.create();
+        DispatchUi.create();
     }
 }
