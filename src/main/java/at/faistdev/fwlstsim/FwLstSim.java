@@ -4,7 +4,7 @@
 package at.faistdev.fwlstsim;
 
 import at.faistdev.fwlstsim.bl.game.Game;
-import at.faistdev.fwlstsim.ui.calltaker.CallTakerUi;
+import at.faistdev.fwlstsim.ui.CallTakerUi;
 
 /**
  *
