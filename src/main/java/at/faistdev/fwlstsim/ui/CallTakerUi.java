@@ -94,6 +94,9 @@ public class CallTakerUi extends javax.swing.JFrame {
         btnEndCall.setEnabled(true);
         currentTalkingOperation = operation;
         setIncomingCallColor(operation.getCallingNumber(), CURRENT_CALL_COLOR);
+
+        DispatchUi dispatchUi = UiRegistry.get(DispatchUi.class);
+        dispatchUi.setSelectedOperation(operation);
     }
 
     private void onEndCallClick() {
@@ -269,7 +272,12 @@ public class CallTakerUi extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new CallTakerUi().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> {
+            CallTakerUi ui = new CallTakerUi();
+            ui.setVisible(true);
+
+            UiRegistry.add(ui);
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

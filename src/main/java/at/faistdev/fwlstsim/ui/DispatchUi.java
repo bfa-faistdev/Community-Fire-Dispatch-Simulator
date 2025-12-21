@@ -34,6 +34,7 @@ public class DispatchUi extends javax.swing.JFrame {
 
     public void setSelectedOperation(Operation operation) {
         selectedOperation = operation;
+        System.out.println("Selected operation: " + selectedOperation.getCallingNumber());
 
         loadAllDispatchedVehicles();
     }
@@ -307,7 +308,12 @@ public class DispatchUi extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new DispatchUi().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> {
+            DispatchUi ui = new DispatchUi();
+            ui.setVisible(true);
+
+            UiRegistry.add(ui);
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
