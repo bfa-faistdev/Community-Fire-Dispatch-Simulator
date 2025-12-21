@@ -2,7 +2,7 @@ package at.faistdev.fwlstsim.dataaccess.tasks;
 
 import at.faistdev.fwlstsim.dataaccess.entities.Operation;
 import at.faistdev.fwlstsim.dataaccess.entities.Vehicle;
-import java.util.List;
+import java.util.Set;
 
 public class OperationFinishedTask extends OperationTask {
 
@@ -13,7 +13,7 @@ public class OperationFinishedTask extends OperationTask {
 
     @Override
     public void execute(Operation operation) {
-        List<Vehicle> vehicles = operation.getVehicles();
+        Set<Vehicle> vehicles = operation.getVehicles();
         for (Vehicle vehicle : vehicles) {
             operation.removeVehicle(vehicle);
             vehicle.sendHome();

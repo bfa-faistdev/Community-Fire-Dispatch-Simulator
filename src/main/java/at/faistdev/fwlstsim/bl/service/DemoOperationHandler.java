@@ -32,7 +32,7 @@ public class DemoOperationHandler extends OperationHandler {
         long id = 1;
         String callText = "Hallo, mir ist mein Auto in den Graben gerutscht und ich komme nicht mehr raus.";
         String callingNumber = "+43 664 960 2211";
-        Location location = new LatLngLocation(0, 0);
+        Location location = new LatLngLocation("Wiener Straße 15, 8010 Graz", 0, 0);
         Set<OperationResource> resources = new HashSet<>();
         long duration = DurationUtil.getMinutes(45);
 

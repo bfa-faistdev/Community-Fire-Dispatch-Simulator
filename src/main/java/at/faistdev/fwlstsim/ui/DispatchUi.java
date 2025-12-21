@@ -4,14 +4,18 @@
  */
 package at.faistdev.fwlstsim.ui;
 
+import at.faistdev.fwlstsim.bl.service.OperationService;
 import at.faistdev.fwlstsim.dataaccess.cache.VehicleCache;
 import at.faistdev.fwlstsim.dataaccess.entities.Operation;
 import at.faistdev.fwlstsim.dataaccess.entities.Vehicle;
+import at.faistdev.fwlstsim.dataaccess.entities.VehicleStatus;
+import at.faistdev.fwlstsim.ui.components.VehiclePanel;
+import java.awt.Component;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
@@ -36,7 +40,24 @@ public class DispatchUi extends javax.swing.JFrame {
         selectedOperation = operation;
         System.out.println("Selected operation: " + selectedOperation.getCallingNumber());
 
+        boolean isOperation = operation != null;
+        selectVehiclesButton.setEnabled(isOperation);
+
         loadAllDispatchedVehicles();
+        fillData();
+        enableDispatchButton();
+    }
+
+    private void fillData() {
+        callerNumberField.setText("");
+        addressField.setText("");
+
+        if (selectedOperation == null) {
+            return;
+        }
+
+        callerNumberField.setText(selectedOperation.getCallingNumber());
+        addressField.setText(selectedOperation.getLocation().getText());
     }
 
     private void onSelectVehiclesBtnClick() {
@@ -49,25 +70,55 @@ public class DispatchUi extends javax.swing.JFrame {
 
         ArrayList<Vehicle> allVehicles = VehicleCache.getCache().getAll();
         for (Vehicle vehicle : allVehicles) {
-            JPanel panel = createSelectVehiclePanel(vehicle);
+            VehiclePanel panel = createSelectVehiclePanel(vehicle);
             innerSelectVehiclesScrollPanel.add(panel);
         }
+
+        innerSelectVehiclesScrollPanel.revalidate();
+        innerSelectVehiclesScrollPanel.repaint();
     }
 
     private void loadAllDispatchedVehicles() {
+        innerDispatchedVehiclesScrollPanel.removeAll();
+
         if (selectedOperation == null) {
             return;
         }
 
-        List<Vehicle> dispatchedVehicles = selectedOperation.getVehicles();
+        Set<Vehicle> dispatchedVehicles = selectedOperation.getVehicles();
         for (Vehicle vehicle : dispatchedVehicles) {
-            JPanel panel = createDispatchedVehiclePanel(vehicle);
-            innerDispatchedVehiclesScrollPanel.add(panel);
+            addVehicleToDispatchedPanel(vehicle);
         }
     }
 
-    private JPanel createSelectVehiclePanel(Vehicle vehicle) {
-        JPanel panel = new JPanel();
+    private void addVehicleToDispatchedPanel(Vehicle vehicle) {
+        if (isAlreadyInDispatchedPanel(vehicle)) {
+            return;
+        }
+
+        VehiclePanel panel = createDispatchedVehiclePanel(vehicle);
+        innerDispatchedVehiclesScrollPanel.add(panel);
+
+        innerDispatchedVehiclesScrollPanel.revalidate();
+        innerDispatchedVehiclesScrollPanel.repaint();
+
+        enableDispatchButton();
+    }
+
+    private boolean isAlreadyInDispatchedPanel(Vehicle vehicle) {
+        Component[] components = innerDispatchedVehiclesScrollPanel.getComponents();
+        for (Component component : components) {
+            VehiclePanel panel = (VehiclePanel) component;
+            if (panel.getVehicle().equals(vehicle)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private VehiclePanel createSelectVehiclePanel(Vehicle vehicle) {
+        VehiclePanel panel = new VehiclePanel(vehicle);
         JTextField statusField = new JTextField();
         JLabel vehicleLabel = new JLabel();
         JCheckBox checkBox = new JCheckBox();
@@ -76,10 +127,10 @@ public class DispatchUi extends javax.swing.JFrame {
         panel.setMaximumSize(new java.awt.Dimension(32767, 23));
         panel.setLayout(new java.awt.GridLayout(1, 3));
 
+        statusField.setEnabled(false);
         statusField.setBackground(VehicleStatusUtil.getColor(vehicle.getStatus()));
         statusField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         statusField.setText(vehicle.getStatus().getText());
-        statusField.setEnabled(false);
         panel.add(statusField);
 
         vehicleLabel.setBackground(new java.awt.Color(255, 255, 255));
@@ -90,13 +141,18 @@ public class DispatchUi extends javax.swing.JFrame {
 
         checkBox.setBackground(new java.awt.Color(255, 255, 255));
         checkBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        checkBox.setEnabled(isVehicleAllowedToBeDispatched(vehicle));
         panel.add(checkBox);
 
         return panel;
     }
 
-    private JPanel createDispatchedVehiclePanel(Vehicle vehicle) {
-        JPanel panel = new JPanel();
+    private boolean isVehicleAllowedToBeDispatched(Vehicle vehicle) {
+        return vehicle.getStatus() == VehicleStatus.STATUS_9 && OperationService.isVehicleDispatched(vehicle) == false;
+    }
+
+    private VehiclePanel createDispatchedVehiclePanel(Vehicle vehicle) {
+        VehiclePanel panel = new VehiclePanel(vehicle);
         JTextField statusField = new JTextField();
         JLabel vehicleLabel = new JLabel();
 
@@ -121,6 +177,73 @@ public class DispatchUi extends javax.swing.JFrame {
         panel.add(vehicleLabel);
 
         return panel;
+    }
+
+    private void onSelectVehiclesSave() {
+        Set<Vehicle> selectedVehicles = getSelectedVehiclesFromDialog();
+        for (Vehicle vehicle : selectedVehicles) {
+            addVehicleToDispatchedPanel(vehicle);
+        }
+
+        selectVehiclesDialog.setVisible(false);
+    }
+
+    private Set<Vehicle> getSelectedVehiclesFromDialog() {
+        Set<Vehicle> selectedVehicles = new HashSet<>();
+        Component[] vehiclePanels = innerSelectVehiclesScrollPanel.getComponents();
+        for (Component panel : vehiclePanels) {
+            VehiclePanel selectVehiclePanel = (VehiclePanel) panel;
+
+            JCheckBox checkBox = getCheckBox(selectVehiclePanel.getComponents());
+            if (!checkBox.isSelected()) {
+                continue;
+            }
+
+            Vehicle vehicle = selectVehiclePanel.getVehicle();
+            if (isVehicleAllowedToBeDispatched(vehicle) == false) {
+                continue;
+            }
+
+            selectedVehicles.add(vehicle);
+        }
+
+        return selectedVehicles;
+    }
+
+    private Set<Vehicle> getDispatchedVehiclesFromDialog() {
+        Set<Vehicle> vehicles = new HashSet<>();
+        Component[] vehiclePanels = innerDispatchedVehiclesScrollPanel.getComponents();
+        for (Component panel : vehiclePanels) {
+            VehiclePanel vehiclePanel = (VehiclePanel) panel;
+
+            Vehicle vehicle = vehiclePanel.getVehicle();
+            vehicles.add(vehicle);
+        }
+
+        return vehicles;
+    }
+
+    private JCheckBox getCheckBox(Component[] components) {
+        for (Component component : components) {
+            if (component instanceof JCheckBox) {
+                return (JCheckBox) component;
+            }
+        }
+
+        throw new IllegalStateException("No Checkbox found in components");
+    }
+
+    private void enableDispatchButton() {
+        dispatchButton.setEnabled(selectedOperation != null && innerDispatchedVehiclesScrollPanel.getComponentCount() > 0);
+    }
+
+    private void onDispatch() {
+        if (selectedOperation == null) {
+            return;
+        }
+
+        Set<Vehicle> vehiclesToDispatch = getDispatchedVehiclesFromDialog();
+        OperationService.dispatchVehicles(selectedOperation, vehiclesToDispatch);
     }
 
     /**
@@ -173,6 +296,7 @@ public class DispatchUi extends javax.swing.JFrame {
         toolbarPanel.add(filler2);
 
         saveVehiclesButton.setText("Speichern");
+        saveVehiclesButton.addActionListener(this::saveVehiclesButtonActionPerformed);
         toolbarPanel.add(saveVehiclesButton);
 
         selectVehiclesDialog.getContentPane().add(toolbarPanel);
@@ -197,12 +321,14 @@ public class DispatchUi extends javax.swing.JFrame {
         toolPanel.add(filler1);
 
         selectVehiclesButton.setText("Fahrzeug wählen");
+        selectVehiclesButton.setEnabled(false);
         selectVehiclesButton.addActionListener(this::selectVehiclesButtonActionPerformed);
         toolPanel.add(selectVehiclesButton);
         toolPanel.add(filler3);
 
         dispatchButton.setText("Alarmieren");
         dispatchButton.setEnabled(false);
+        dispatchButton.addActionListener(this::dispatchButtonActionPerformed);
         toolPanel.add(dispatchButton);
 
         getContentPane().add(toolPanel);
@@ -288,6 +414,14 @@ public class DispatchUi extends javax.swing.JFrame {
     private void selectVehiclesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectVehiclesButtonActionPerformed
         onSelectVehiclesBtnClick();
     }//GEN-LAST:event_selectVehiclesButtonActionPerformed
+
+    private void saveVehiclesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveVehiclesButtonActionPerformed
+        onSelectVehiclesSave();
+    }//GEN-LAST:event_saveVehiclesButtonActionPerformed
+
+    private void dispatchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dispatchButtonActionPerformed
+        onDispatch();
+    }//GEN-LAST:event_dispatchButtonActionPerformed
 
     public static void create() {
         /* Set the Nimbus look and feel */

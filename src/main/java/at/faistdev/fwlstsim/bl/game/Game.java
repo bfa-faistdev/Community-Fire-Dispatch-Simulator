@@ -61,9 +61,11 @@ public class Game implements Runnable {
             return;
         }
 
+        System.out.println("Executing " + task.getClass().getSimpleName());
         task.execute(operation);
 
         if (task.isFinished(operation)) {
+            System.out.println("Finished " + task.getClass().getSimpleName());
             operation.removeTask(task);
         }
     }

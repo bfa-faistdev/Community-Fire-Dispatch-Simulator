@@ -6,6 +6,7 @@ import at.faistdev.fwlstsim.dataaccess.entities.OperationResource;
 import at.faistdev.fwlstsim.dataaccess.entities.OperationStatus;
 import at.faistdev.fwlstsim.dataaccess.entities.Vehicle;
 import at.faistdev.fwlstsim.dataaccess.entities.VehicleStatus;
+import at.faistdev.fwlstsim.dataaccess.entities.VehicleTarget;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -94,7 +95,7 @@ public class OperationService {
     public static boolean isVehicleDispatched(Vehicle vehicle) {
         ArrayList<Operation> allOperations = OperationCache.getCache().getAll();
         for (Operation operation : allOperations) {
-            List<Vehicle> dispatchedVehicles = operation.getVehicles();
+            Set<Vehicle> dispatchedVehicles = operation.getVehicles();
             if (dispatchedVehicles.contains(vehicle)) {
                 return true;
             }
@@ -108,5 +109,16 @@ public class OperationService {
         return operations.stream()//
                 .filter(op -> op.getStatus() == OperationStatus.INITAL)//
                 .collect(Collectors.toList());
+    }
+
+    public static void dispatchVehicles(Operation operation, Set<Vehicle> vehiclesToDispatch) {
+        for (Vehicle vehicle : vehiclesToDispatch) {
+            if (isVehicleDispatched(vehicle)) {
+                continue;
+            }
+
+            operation.addVehicle(vehicle);
+            vehicle.addTarget(new VehicleTarget(operation.getLocation(), VehicleStatus.STATUS_6));
+        }
     }
 }

@@ -4,4 +4,5 @@ public abstract class Location {
 
     public abstract Location getCopy();
 
+    public abstract String getText();
 }

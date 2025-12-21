@@ -27,6 +27,7 @@ public class Vehicle {
     }
 
     public void setStatus(VehicleStatus status) {
+        System.err.println("" + this.getName() + ": Status " + this.getStatus().getText() + " to " + status.getText());
         this.status = status;
     }
 

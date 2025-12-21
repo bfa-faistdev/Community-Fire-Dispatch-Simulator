@@ -2,6 +2,7 @@ package at.faistdev.fwlstsim.dataaccess.entities;
 
 import at.faistdev.fwlstsim.dataaccess.tasks.OperationTask;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -16,7 +17,7 @@ public class Operation {
 
     private final Set<OperationResource> requiredResources;
 
-    private final List<Vehicle> vehicles;
+    private final Set<Vehicle> vehicles;
     private final List<OperationTask> pendingTasks;
 
     private long lastResourceRequest = 0;
@@ -31,7 +32,7 @@ public class Operation {
         this.location = location;
         this.operationKeyword = operationKeyword;
         this.requiredResources = initialRequiredResources;
-        this.vehicles = new ArrayList<>();
+        this.vehicles = new HashSet<>();
         this.pendingTasks = new ArrayList<>();
         this.durationAfterAllResourcesOnSiteInTicks = durationAfterAllResourcesOnSiteInTicks;
     }
@@ -56,8 +57,16 @@ public class Operation {
         return requiredResources;
     }
 
-    public List<Vehicle> getVehicles() {
+    public Set<Vehicle> getVehicles() {
         return vehicles;
+    }
+
+    public void removeVehicle(Vehicle vehicle) {
+        vehicles.remove(vehicle);
+    }
+
+    public void addVehicle(Vehicle vehicle) {
+        this.vehicles.add(vehicle);
     }
 
     public long getLastResourceRequest() {
@@ -104,10 +113,6 @@ public class Operation {
         }
 
         return progress;
-    }
-
-    public void removeVehicle(Vehicle vehicle) {
-        vehicles.remove(vehicle);
     }
 
     public OperationStatus getStatus() {
