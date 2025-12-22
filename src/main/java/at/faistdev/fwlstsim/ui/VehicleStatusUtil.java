@@ -12,9 +12,13 @@ public class VehicleStatusUtil {
             case STATUS_6:
                 return Color.red;
             case STATUS_9:
-                return Color.white;
+                return getStatusGreen();
         }
 
-        return Color.white;
+        return Color.green;
+    }
+
+    private static Color getStatusGreen() {
+        return new java.awt.Color(0, 153, 51);
     }
 }

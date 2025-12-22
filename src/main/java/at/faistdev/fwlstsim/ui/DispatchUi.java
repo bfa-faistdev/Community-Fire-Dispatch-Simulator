@@ -16,7 +16,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.JPanel;
 
 /**
  *
@@ -33,7 +33,32 @@ public class DispatchUi extends javax.swing.JFrame {
      */
     public DispatchUi() {
         initComponents();
+        hideDemoComponents();
         selectedOperation = null;
+
+        new Thread(() -> {
+            while (true) {
+                try {
+                    Thread.sleep(10_000);
+                } catch (InterruptedException ex) {
+                    System.getLogger(DispatchUi.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+                }
+
+                if (selectedOperation == null) {
+                    continue;
+                }
+
+                if (dispatchButton.isEnabled()) {
+                    continue;
+                }
+
+                loadAllDispatchedVehicles();
+            }
+        }).start();
+    }
+
+    private void hideDemoComponents() {
+        demoSelectVehicle.setVisible(false);
     }
 
     public void setSelectedOperation(Operation operation) {
@@ -45,7 +70,6 @@ public class DispatchUi extends javax.swing.JFrame {
 
         loadAllDispatchedVehicles();
         fillData();
-        enableDispatchButton();
     }
 
     private void fillData() {
@@ -89,6 +113,9 @@ public class DispatchUi extends javax.swing.JFrame {
         for (Vehicle vehicle : dispatchedVehicles) {
             addVehicleToDispatchedPanel(vehicle);
         }
+
+        innerDispatchedVehiclesScrollPanel.revalidate();
+        innerDispatchedVehiclesScrollPanel.repaint();
     }
 
     private void addVehicleToDispatchedPanel(Vehicle vehicle) {
@@ -102,7 +129,7 @@ public class DispatchUi extends javax.swing.JFrame {
         innerDispatchedVehiclesScrollPanel.revalidate();
         innerDispatchedVehiclesScrollPanel.repaint();
 
-        enableDispatchButton();
+        dispatchButton.setEnabled(true);
     }
 
     private boolean isAlreadyInDispatchedPanel(Vehicle vehicle) {
@@ -117,30 +144,46 @@ public class DispatchUi extends javax.swing.JFrame {
         return false;
     }
 
-    private VehiclePanel createSelectVehiclePanel(Vehicle vehicle) {
+    private VehiclePanel createVehiclePanel(Vehicle vehicle) {
         VehiclePanel panel = new VehiclePanel(vehicle);
-        JLabel statusField = new JLabel();
+        JPanel statusPanel = new JPanel();
+        JLabel statusLabel = new JLabel();
         JLabel vehicleLabel = new JLabel();
-        JCheckBox checkBox = new JCheckBox();
 
         panel.setMaximumSize(new java.awt.Dimension(32767, 23));
-        panel.setLayout(new java.awt.GridLayout(1, 3));
+        panel.setLayout(new javax.swing.BoxLayout(panel, javax.swing.BoxLayout.X_AXIS));
 
-        statusField.setOpaque(true);
-        statusField.setBackground(VehicleStatusUtil.getColor(vehicle.getStatus()));
-        statusField.setHorizontalAlignment(javax.swing.JLabel.CENTER);
-        statusField.setText(vehicle.getStatus().getText());
-        statusField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 5, 1), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
-        panel.add(statusField);
+        statusPanel.setBackground(VehicleStatusUtil.getColor(vehicle.getStatus()));
+        statusPanel.setMaximumSize(new java.awt.Dimension(50, 32767));
+        statusPanel.setMinimumSize(new java.awt.Dimension(50, 16));
+        statusPanel.setPreferredSize(new java.awt.Dimension(50, 16));
+        statusPanel.setLayout(new java.awt.GridLayout());
+        panel.add(statusPanel);
 
-        vehicleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        statusLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        statusLabel.setForeground(new java.awt.Color(0, 0, 0));
+        statusLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        statusLabel.setText(vehicle.getStatus().getText());
+        statusPanel.add(statusLabel);
+
         vehicleLabel.setText(vehicle.getName());
-        vehicleLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10));
+        vehicleLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
+        vehicleLabel.setMaximumSize(new java.awt.Dimension(1000, 16));
+        vehicleLabel.setMinimumSize(new java.awt.Dimension(300, 16));
+        vehicleLabel.setPreferredSize(new java.awt.Dimension(300, 16));
         panel.add(vehicleLabel);
 
-        checkBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        return panel;
+    }
+
+    private VehiclePanel createSelectVehiclePanel(Vehicle vehicle) {
+        VehiclePanel panel = createVehiclePanel(vehicle);
+        JCheckBox checkBox = new JCheckBox();
+        javax.swing.Box.Filler filler = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0));
+
         checkBox.setEnabled(isVehicleAllowedToBeDispatched(vehicle));
         panel.add(checkBox);
+        panel.add(filler);
 
         return panel;
     }
@@ -150,27 +193,15 @@ public class DispatchUi extends javax.swing.JFrame {
     }
 
     private VehiclePanel createDispatchedVehiclePanel(Vehicle vehicle) {
-        VehiclePanel panel = new VehiclePanel(vehicle);
-        JTextField statusField = new JTextField();
-        JLabel vehicleLabel = new JLabel();
+        VehiclePanel panel = createVehiclePanel(vehicle);
 
-        panel.setMaximumSize(new java.awt.Dimension(32767, 23));
-        panel.setLayout(new javax.swing.BoxLayout(panel, javax.swing.BoxLayout.X_AXIS));
+        JCheckBox checkBox = new JCheckBox();
+        javax.swing.Box.Filler filler = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0));
 
-        statusField.setEnabled(false);
-        statusField.setBackground(VehicleStatusUtil.getColor(vehicle.getStatus()));
-        statusField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        statusField.setText(vehicle.getStatus().getText());
-        statusField.setMaximumSize(new java.awt.Dimension(50, 2147483647));
-        panel.add(statusField);
-
-        vehicleLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        vehicleLabel.setText(vehicle.getName());
-        vehicleLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10));
-        vehicleLabel.setMaximumSize(new java.awt.Dimension(1000, 22));
-        vehicleLabel.setMinimumSize(new java.awt.Dimension(250, 22));
-        vehicleLabel.setPreferredSize(new java.awt.Dimension(250, 22));
-        panel.add(vehicleLabel);
+        checkBox.setEnabled(false);
+        checkBox.setSelected(OperationService.isVehicleDispatched(vehicle));
+        panel.add(checkBox);
+        panel.add(filler);
 
         return panel;
     }
@@ -229,10 +260,6 @@ public class DispatchUi extends javax.swing.JFrame {
         throw new IllegalStateException("No Checkbox found in components");
     }
 
-    private void enableDispatchButton() {
-        dispatchButton.setEnabled(selectedOperation != null && innerDispatchedVehiclesScrollPanel.getComponentCount() > 0);
-    }
-
     private void onDispatch() {
         if (selectedOperation == null) {
             return;
@@ -240,6 +267,8 @@ public class DispatchUi extends javax.swing.JFrame {
 
         Set<Vehicle> vehiclesToDispatch = getDispatchedVehiclesFromDialog();
         OperationService.dispatchVehicles(selectedOperation, vehiclesToDispatch);
+        loadAllDispatchedVehicles();
+        dispatchButton.setEnabled(false);
     }
 
     /**
@@ -257,6 +286,12 @@ public class DispatchUi extends javax.swing.JFrame {
         saveVehiclesButton = new javax.swing.JButton();
         selectVehiclesScrollPanel = new javax.swing.JScrollPane();
         innerSelectVehiclesScrollPanel = new javax.swing.JPanel();
+        demoSelectVehicle = new javax.swing.JPanel();
+        demoSVstatus = new javax.swing.JPanel();
+        demoSVstatusText = new javax.swing.JLabel();
+        demoSVlabel = new javax.swing.JLabel();
+        demoSVcheckbox = new javax.swing.JCheckBox();
+        demoSVfiller = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0));
         toolPanel = new javax.swing.JPanel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         selectVehiclesButton = new javax.swing.JButton();
@@ -299,6 +334,35 @@ public class DispatchUi extends javax.swing.JFrame {
         selectVehiclesScrollPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         innerSelectVehiclesScrollPanel.setLayout(new javax.swing.BoxLayout(innerSelectVehiclesScrollPanel, javax.swing.BoxLayout.Y_AXIS));
+
+        demoSelectVehicle.setMaximumSize(new java.awt.Dimension(32767, 23));
+        demoSelectVehicle.setLayout(new javax.swing.BoxLayout(demoSelectVehicle, javax.swing.BoxLayout.X_AXIS));
+
+        demoSVstatus.setBackground(new java.awt.Color(0, 153, 51));
+        demoSVstatus.setMaximumSize(new java.awt.Dimension(50, 32767));
+        demoSVstatus.setMinimumSize(new java.awt.Dimension(50, 16));
+        demoSVstatus.setPreferredSize(new java.awt.Dimension(50, 16));
+        demoSVstatus.setLayout(new java.awt.GridLayout());
+
+        demoSVstatusText.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        demoSVstatusText.setForeground(new java.awt.Color(0, 0, 0));
+        demoSVstatusText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        demoSVstatusText.setText("6");
+        demoSVstatus.add(demoSVstatusText);
+
+        demoSelectVehicle.add(demoSVstatus);
+
+        demoSVlabel.setText("TLF 1000 Blumegg Teipl");
+        demoSVlabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
+        demoSVlabel.setMaximumSize(new java.awt.Dimension(1000, 16));
+        demoSVlabel.setMinimumSize(new java.awt.Dimension(300, 16));
+        demoSVlabel.setPreferredSize(new java.awt.Dimension(300, 16));
+        demoSelectVehicle.add(demoSVlabel);
+        demoSelectVehicle.add(demoSVcheckbox);
+        demoSelectVehicle.add(demoSVfiller);
+
+        innerSelectVehiclesScrollPanel.add(demoSelectVehicle);
+
         selectVehiclesScrollPanel.setViewportView(innerSelectVehiclesScrollPanel);
 
         selectVehiclesDialog.getContentPane().add(selectVehiclesScrollPanel);
@@ -434,6 +498,12 @@ public class DispatchUi extends javax.swing.JFrame {
     private javax.swing.JLabel callerNumberLabel;
     private javax.swing.JPanel callerNumberPanel;
     private javax.swing.JPanel dataPanel;
+    private javax.swing.JCheckBox demoSVcheckbox;
+    private javax.swing.Box.Filler demoSVfiller;
+    private javax.swing.JLabel demoSVlabel;
+    private javax.swing.JPanel demoSVstatus;
+    private javax.swing.JLabel demoSVstatusText;
+    private javax.swing.JPanel demoSelectVehicle;
     private javax.swing.JButton dispatchButton;
     private javax.swing.JScrollPane dispatchedVehiclesScrollPanel;
     private javax.swing.Box.Filler filler1;
