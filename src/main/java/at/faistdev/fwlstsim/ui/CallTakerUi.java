@@ -140,7 +140,6 @@ public class CallTakerUi extends javax.swing.JFrame {
         JPanel panel = new JPanel();
         panel.setMaximumSize(new java.awt.Dimension(32767, 50));
         panel.setLayout(new java.awt.GridLayout());
-        panel.setBackground(Color.white);
 
         return panel;
     }
@@ -156,7 +155,6 @@ public class CallTakerUi extends javax.swing.JFrame {
         callPanel.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1)));
         callPanel.setMaximumSize(new java.awt.Dimension(32767, 50));
         callPanel.setLayout(new java.awt.GridLayout());
-        callPanel.setBackground(Color.white);
 
         JLabel label = new JLabel();
         label.setText(callingNumber);
@@ -194,11 +192,9 @@ public class CallTakerUi extends javax.swing.JFrame {
         leftPanel.setBackground(new java.awt.Color(255, 255, 255));
         leftPanel.setLayout(new java.awt.GridLayout(2, 0));
 
-        incomingCallsPanel.setBackground(new java.awt.Color(255, 255, 255));
         incomingCallsPanel.setLayout(new javax.swing.BoxLayout(incomingCallsPanel, javax.swing.BoxLayout.Y_AXIS));
         leftPanel.add(incomingCallsPanel);
 
-        callPromptsPanel.setBackground(new java.awt.Color(255, 255, 255));
         callPromptsPanel.setLayout(new javax.swing.BoxLayout(callPromptsPanel, javax.swing.BoxLayout.Y_AXIS));
 
         callPromptsInnerPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -219,7 +215,6 @@ public class CallTakerUi extends javax.swing.JFrame {
         rightPanel.setBackground(new java.awt.Color(255, 255, 255));
         rightPanel.setLayout(new java.awt.GridLayout(1, 0));
 
-        connectedCallPanel.setBackground(new java.awt.Color(255, 255, 255));
         connectedCallPanel.setLayout(new javax.swing.BoxLayout(connectedCallPanel, javax.swing.BoxLayout.Y_AXIS));
 
         actionPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -254,23 +249,6 @@ public class CallTakerUi extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEndCallActionPerformed
 
     public static void create() {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             CallTakerUi ui = new CallTakerUi();

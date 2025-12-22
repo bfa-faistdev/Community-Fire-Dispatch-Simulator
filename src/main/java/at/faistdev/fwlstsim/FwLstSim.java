@@ -6,6 +6,7 @@ package at.faistdev.fwlstsim;
 import at.faistdev.fwlstsim.bl.game.Game;
 import at.faistdev.fwlstsim.ui.CallTakerUi;
 import at.faistdev.fwlstsim.ui.DispatchUi;
+import com.formdev.flatlaf.FlatDarkLaf;
 
 /**
  *
@@ -19,6 +20,13 @@ public class FwLstSim {
 
         Thread gameThread = new Thread(game);
         gameThread.start();
+
+        createUi();
+
+    }
+
+    private static void createUi() {
+        FlatDarkLaf.setup();
 
         CallTakerUi.create();
         DispatchUi.create();

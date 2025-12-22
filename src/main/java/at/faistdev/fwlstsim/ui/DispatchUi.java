@@ -123,7 +123,6 @@ public class DispatchUi extends javax.swing.JFrame {
         JLabel vehicleLabel = new JLabel();
         JCheckBox checkBox = new JCheckBox();
 
-        panel.setBackground(new java.awt.Color(255, 255, 255));
         panel.setMaximumSize(new java.awt.Dimension(32767, 23));
         panel.setLayout(new java.awt.GridLayout(1, 3));
 
@@ -134,13 +133,11 @@ public class DispatchUi extends javax.swing.JFrame {
         statusField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 5, 1), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
         panel.add(statusField);
 
-        vehicleLabel.setBackground(new java.awt.Color(255, 255, 255));
         vehicleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         vehicleLabel.setText(vehicle.getName());
         vehicleLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10));
         panel.add(vehicleLabel);
 
-        checkBox.setBackground(new java.awt.Color(255, 255, 255));
         checkBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         checkBox.setEnabled(isVehicleAllowedToBeDispatched(vehicle));
         panel.add(checkBox);
@@ -157,7 +154,6 @@ public class DispatchUi extends javax.swing.JFrame {
         JTextField statusField = new JTextField();
         JLabel vehicleLabel = new JLabel();
 
-        panel.setBackground(new java.awt.Color(255, 255, 255));
         panel.setMaximumSize(new java.awt.Dimension(32767, 23));
         panel.setLayout(new javax.swing.BoxLayout(panel, javax.swing.BoxLayout.X_AXIS));
 
@@ -168,7 +164,6 @@ public class DispatchUi extends javax.swing.JFrame {
         statusField.setMaximumSize(new java.awt.Dimension(50, 2147483647));
         panel.add(statusField);
 
-        vehicleLabel.setBackground(new java.awt.Color(255, 255, 255));
         vehicleLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         vehicleLabel.setText(vehicle.getName());
         vehicleLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10));
@@ -289,7 +284,6 @@ public class DispatchUi extends javax.swing.JFrame {
         selectVehiclesDialog.setMinimumSize(new java.awt.Dimension(600, 300));
         selectVehiclesDialog.getContentPane().setLayout(new javax.swing.BoxLayout(selectVehiclesDialog.getContentPane(), javax.swing.BoxLayout.Y_AXIS));
 
-        toolbarPanel.setBackground(new java.awt.Color(255, 255, 255));
         toolbarPanel.setMaximumSize(new java.awt.Dimension(32767, 33));
         toolbarPanel.setMinimumSize(new java.awt.Dimension(0, 23));
         toolbarPanel.setPreferredSize(new java.awt.Dimension(374, 33));
@@ -304,7 +298,6 @@ public class DispatchUi extends javax.swing.JFrame {
 
         selectVehiclesScrollPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        innerSelectVehiclesScrollPanel.setBackground(new java.awt.Color(255, 255, 255));
         innerSelectVehiclesScrollPanel.setLayout(new javax.swing.BoxLayout(innerSelectVehiclesScrollPanel, javax.swing.BoxLayout.Y_AXIS));
         selectVehiclesScrollPanel.setViewportView(innerSelectVehiclesScrollPanel);
 
@@ -346,7 +339,6 @@ public class DispatchUi extends javax.swing.JFrame {
         callerNumberLabel.setMaximumSize(new java.awt.Dimension(1000, 16));
         callerNumberPanel.add(callerNumberLabel);
 
-        callerNumberField.setBackground(new java.awt.Color(242, 242, 242));
         callerNumberField.setAlignmentX(0.0F);
         callerNumberField.setEnabled(false);
         callerNumberPanel.add(callerNumberField);
@@ -400,7 +392,6 @@ public class DispatchUi extends javax.swing.JFrame {
 
         dispatchedVehiclesScrollPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        innerDispatchedVehiclesScrollPanel.setBackground(new java.awt.Color(255, 255, 255));
         innerDispatchedVehiclesScrollPanel.setLayout(new javax.swing.BoxLayout(innerDispatchedVehiclesScrollPanel, javax.swing.BoxLayout.Y_AXIS));
         dispatchedVehiclesScrollPanel.setViewportView(innerDispatchedVehiclesScrollPanel);
 
@@ -426,23 +417,6 @@ public class DispatchUi extends javax.swing.JFrame {
     }//GEN-LAST:event_dispatchButtonActionPerformed
 
     public static void create() {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             DispatchUi ui = new DispatchUi();
