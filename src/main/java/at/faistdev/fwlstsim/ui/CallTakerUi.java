@@ -40,7 +40,7 @@ public class CallTakerUi extends javax.swing.JFrame {
                     System.getLogger(CallTakerUi.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
                 }
             }
-        }).start();
+        }, "CallTakerUi-RefreshIncomingCalls").start();
 
     }
 

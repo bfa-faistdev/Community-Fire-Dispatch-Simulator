@@ -106,7 +106,8 @@ public class Operation {
     }
 
     public int getProgressInPercent() {
-        int progress = (int) (progressInTicks / durationAfterAllResourcesOnSiteInTicks);
+        double progressDouble = (double) progressInTicks / durationAfterAllResourcesOnSiteInTicks;
+        int progress = (int) (progressDouble * 100);
 
         if (progress > 100) {
             progress = 100;

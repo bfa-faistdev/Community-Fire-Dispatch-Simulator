@@ -33,9 +33,19 @@ public class DispatchUi extends javax.swing.JFrame {
      */
     public DispatchUi() {
         initComponents();
-        hideDemoComponents();
+        hideComponents();
         selectedOperation = null;
 
+        startRefreshThreads();
+    }
+
+    private void hideComponents() {
+        demoSelectVehicle.setVisible(false);
+
+        progressPanel.setVisible(false);
+    }
+
+    private void startRefreshThreads() {
         new Thread(() -> {
             while (true) {
                 try {
@@ -54,22 +64,39 @@ public class DispatchUi extends javax.swing.JFrame {
 
                 loadAllDispatchedVehicles();
             }
-        }).start();
-    }
+        }, "DispatchUi-LoadAllDispatchedVehicles").start();
 
-    private void hideDemoComponents() {
-        demoSelectVehicle.setVisible(false);
+        new Thread(() -> {
+            while (true) {
+                try {
+                    Thread.sleep(5_000);
+                } catch (InterruptedException ex) {
+                    System.getLogger(DispatchUi.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+                }
+
+                if (selectedOperation == null) {
+                    continue;
+                }
+
+                updateProgress();
+            }
+        }, "DispatchUi-UpdateProgress").start();
     }
 
     public void setSelectedOperation(Operation operation) {
         selectedOperation = operation;
         System.out.println("Selected operation: " + selectedOperation.getCallingNumber());
 
-        boolean isOperation = operation != null;
-        selectVehiclesButton.setEnabled(isOperation);
+        if (operation == null) {
+            progressPanel.setVisible(false);
+            selectVehiclesButton.setEnabled(false);
+        } else {
+            selectVehiclesButton.setEnabled(true);
+        }
 
         loadAllDispatchedVehicles();
         fillData();
+        updateProgress();
     }
 
     private void fillData() {
@@ -116,6 +143,26 @@ public class DispatchUi extends javax.swing.JFrame {
 
         innerDispatchedVehiclesScrollPanel.revalidate();
         innerDispatchedVehiclesScrollPanel.repaint();
+    }
+
+    private void updateProgress() {
+        if (selectedOperation == null) {
+            progressPanel.setVisible(false);
+            return;
+        }
+
+        if (selectedOperation.getVehicles().isEmpty()) {
+            progressPanel.setVisible(false);
+            return;
+        } else {
+            progressPanel.setVisible(true);
+        }
+
+        int progressInPercent = selectedOperation.getProgressInPercent();
+        progressBar.setString(progressInPercent + " %");
+        progressBar.setValue(progressInPercent);
+
+        System.out.println("Progress = " + progressInPercent);
     }
 
     private void addVehicleToDispatchedPanel(Vehicle vehicle) {
@@ -269,6 +316,8 @@ public class DispatchUi extends javax.swing.JFrame {
         OperationService.dispatchVehicles(selectedOperation, vehiclesToDispatch);
         loadAllDispatchedVehicles();
         dispatchButton.setEnabled(false);
+
+        updateProgress();
     }
 
     /**
@@ -299,6 +348,9 @@ public class DispatchUi extends javax.swing.JFrame {
         dispatchButton = new javax.swing.JButton();
         lowerPanel = new javax.swing.JPanel();
         dataPanel = new javax.swing.JPanel();
+        progressPanel = new javax.swing.JPanel();
+        progressLabel = new javax.swing.JLabel();
+        progressBar = new javax.swing.JProgressBar();
         callerNumberPanel = new javax.swing.JPanel();
         callerNumberLabel = new javax.swing.JLabel();
         callerNumberField = new javax.swing.JTextField();
@@ -394,6 +446,24 @@ public class DispatchUi extends javax.swing.JFrame {
         lowerPanel.setLayout(new java.awt.GridLayout(1, 2));
 
         dataPanel.setLayout(new javax.swing.BoxLayout(dataPanel, javax.swing.BoxLayout.Y_AXIS));
+
+        progressPanel.setMaximumSize(new java.awt.Dimension(10000, 50));
+        progressPanel.setLayout(new javax.swing.BoxLayout(progressPanel, javax.swing.BoxLayout.Y_AXIS));
+
+        progressLabel.setLabelFor(addressField);
+        progressLabel.setText("Fortschritt");
+        progressLabel.setMaximumSize(new java.awt.Dimension(1000, 16));
+        progressPanel.add(progressLabel);
+
+        progressBar.setAlignmentX(0.0F);
+        progressBar.setMaximumSize(new java.awt.Dimension(32767, 34));
+        progressBar.setMinimumSize(new java.awt.Dimension(10, 34));
+        progressBar.setPreferredSize(new java.awt.Dimension(146, 34));
+        progressBar.setString("0 %");
+        progressBar.setStringPainted(true);
+        progressPanel.add(progressBar);
+
+        dataPanel.add(progressPanel);
 
         callerNumberPanel.setMaximumSize(new java.awt.Dimension(10000, 50));
         callerNumberPanel.setLayout(new javax.swing.BoxLayout(callerNumberPanel, javax.swing.BoxLayout.Y_AXIS));
@@ -518,6 +588,9 @@ public class DispatchUi extends javax.swing.JFrame {
     private javax.swing.JLabel keywordLabel;
     private javax.swing.JPanel keywordPanel;
     private javax.swing.JPanel lowerPanel;
+    private javax.swing.JProgressBar progressBar;
+    private javax.swing.JLabel progressLabel;
+    private javax.swing.JPanel progressPanel;
     private javax.swing.JButton saveVehiclesButton;
     private javax.swing.JButton selectVehiclesButton;
     private javax.swing.JDialog selectVehiclesDialog;

@@ -18,7 +18,7 @@ public class FwLstSim {
         Game game = new Game();
         game.init();
 
-        Thread gameThread = new Thread(game);
+        Thread gameThread = new Thread(game, "Game");
         gameThread.start();
 
         createUi();
