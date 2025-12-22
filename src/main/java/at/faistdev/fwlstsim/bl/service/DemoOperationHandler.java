@@ -36,7 +36,7 @@ public class DemoOperationHandler extends OperationHandler {
         Set<OperationResource> resources = new HashSet<>();
         long duration = DurationUtil.getMinutes(45);
 
-        Operation operation = new Operation(id, callText, callingNumber, location, keyword, resources, duration);
+        Operation operation = new Operation(id, callText, callingNumber, location, resources, duration);
         addDemoTasksToOperation(operation);
         return operation;
     }

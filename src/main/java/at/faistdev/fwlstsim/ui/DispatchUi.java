@@ -5,8 +5,11 @@
 package at.faistdev.fwlstsim.ui;
 
 import at.faistdev.fwlstsim.bl.service.OperationService;
+import at.faistdev.fwlstsim.bl.util.StringUtil;
+import at.faistdev.fwlstsim.dataaccess.cache.OperationKeywordCache;
 import at.faistdev.fwlstsim.dataaccess.cache.VehicleCache;
 import at.faistdev.fwlstsim.dataaccess.entities.Operation;
+import at.faistdev.fwlstsim.dataaccess.entities.OperationKeyword;
 import at.faistdev.fwlstsim.dataaccess.entities.Vehicle;
 import at.faistdev.fwlstsim.dataaccess.entities.VehicleStatus;
 import at.faistdev.fwlstsim.ui.components.VehiclePanel;
@@ -109,6 +112,17 @@ public class DispatchUi extends javax.swing.JFrame {
 
         callerNumberField.setText(selectedOperation.getCallingNumber());
         addressField.setText(selectedOperation.getLocation().getText());
+
+        initKeywordComboBox();
+        if (selectedOperation.getOperationKeyword() != null) {
+            keywordComboBox.setSelectedItem(selectedOperation.getOperationKeyword().getName());
+        }
+    }
+
+    private void initKeywordComboBox() {
+        ArrayList<OperationKeyword> keywords = OperationKeywordCache.getCache().getAll();
+        String[] keywordNames = keywords.stream().map(keyword -> keyword.getName()).toArray(String[]::new);
+        keywordComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(keywordNames));
     }
 
     private void onSelectVehiclesBtnClick() {
@@ -175,8 +189,6 @@ public class DispatchUi extends javax.swing.JFrame {
 
         innerDispatchedVehiclesScrollPanel.revalidate();
         innerDispatchedVehiclesScrollPanel.repaint();
-
-        dispatchButton.setEnabled(true);
     }
 
     private boolean isAlreadyInDispatchedPanel(Vehicle vehicle) {
@@ -260,6 +272,7 @@ public class DispatchUi extends javax.swing.JFrame {
         }
 
         selectVehiclesDialog.setVisible(false);
+        dispatchButton.setEnabled(true);
     }
 
     private Set<Vehicle> getSelectedVehiclesFromDialog() {
@@ -312,12 +325,27 @@ public class DispatchUi extends javax.swing.JFrame {
             return;
         }
 
-        Set<Vehicle> vehiclesToDispatch = getDispatchedVehiclesFromDialog();
-        OperationService.dispatchVehicles(selectedOperation, vehiclesToDispatch);
+        dispatchVehicles();
+        setOperationKeyword();
+
         loadAllDispatchedVehicles();
         dispatchButton.setEnabled(false);
-
         updateProgress();
+    }
+
+    private void dispatchVehicles() {
+        Set<Vehicle> vehiclesToDispatch = getDispatchedVehiclesFromDialog();
+        OperationService.dispatchVehicles(selectedOperation, vehiclesToDispatch);
+    }
+
+    private void setOperationKeyword() {
+        Object selectedKeywordName = keywordComboBox.getSelectedItem();
+        if (StringUtil.isNullOrEmpty(selectedKeywordName) == false) {
+            OperationKeyword keyword = OperationKeywordCache.getCache().getByName((String) selectedKeywordName);
+            if (keyword != null) {
+                selectedOperation.setOperationKeyword(keyword);
+            }
+        }
     }
 
     /**
@@ -394,7 +422,7 @@ public class DispatchUi extends javax.swing.JFrame {
         demoSVstatus.setMaximumSize(new java.awt.Dimension(50, 32767));
         demoSVstatus.setMinimumSize(new java.awt.Dimension(50, 16));
         demoSVstatus.setPreferredSize(new java.awt.Dimension(50, 16));
-        demoSVstatus.setLayout(new java.awt.GridLayout());
+        demoSVstatus.setLayout(new java.awt.GridLayout(1, 0));
 
         demoSVstatusText.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         demoSVstatusText.setForeground(new java.awt.Color(0, 0, 0));

@@ -12,7 +12,6 @@ public class Operation {
     private final String callingNumber;
     private final String callText;
     private final Location location;
-    private final OperationKeyword operationKeyword;
     private final long durationAfterAllResourcesOnSiteInTicks;
 
     private final Set<OperationResource> requiredResources;
@@ -20,17 +19,17 @@ public class Operation {
     private final Set<Vehicle> vehicles;
     private final List<OperationTask> pendingTasks;
 
+    private OperationKeyword operationKeyword;
     private long lastResourceRequest = 0;
     private long progressInTicks = 0;
     private OperationStatus status = OperationStatus.INITAL;
 
-    public Operation(long id, String callText, String callingNumber, Location location, OperationKeyword operationKeyword,
+    public Operation(long id, String callText, String callingNumber, Location location,
             Set<OperationResource> initialRequiredResources, long durationAfterAllResourcesOnSiteInTicks) {
         this.id = id;
         this.callText = callText;
         this.callingNumber = callingNumber;
         this.location = location;
-        this.operationKeyword = operationKeyword;
         this.requiredResources = initialRequiredResources;
         this.vehicles = new HashSet<>();
         this.pendingTasks = new ArrayList<>();
@@ -47,6 +46,10 @@ public class Operation {
 
     public Location getLocation() {
         return location;
+    }
+
+    public void setOperationKeyword(OperationKeyword operationKeyword) {
+        this.operationKeyword = operationKeyword;
     }
 
     public OperationKeyword getOperationKeyword() {

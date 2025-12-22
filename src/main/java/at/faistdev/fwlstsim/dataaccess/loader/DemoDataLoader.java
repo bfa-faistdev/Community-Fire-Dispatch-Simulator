@@ -18,8 +18,14 @@ public class DemoDataLoader extends PersistentDataLoader {
     }
 
     private void loadOperationKeywords() {
-        OperationKeyword operationKeyword = new OperationKeyword("T03-VU-Berg.Öl.");
-        OperationKeywordCache.getCache().add(operationKeyword);
+        {
+            OperationKeyword operationKeyword = new OperationKeyword("T03-VU-Berg.Öl.");
+            OperationKeywordCache.getCache().add(operationKeyword);
+        }
+        {
+            OperationKeyword operationKeyword = new OperationKeyword("T03-VU-mit-Verl.");
+            OperationKeywordCache.getCache().add(operationKeyword);
+        }
     }
 
     private void loadVehicles() {

@@ -1,6 +1,7 @@
 package at.faistdev.fwlstsim.dataaccess.cache;
 
 import at.faistdev.fwlstsim.dataaccess.entities.OperationKeyword;
+import java.util.ArrayList;
 
 public class OperationKeywordCache extends SingleListCache<OperationKeyword> {
 
@@ -12,6 +13,17 @@ public class OperationKeywordCache extends SingleListCache<OperationKeyword> {
         }
 
         return INSTANCE;
+    }
+
+    public OperationKeyword getByName(String name) {
+        ArrayList<OperationKeyword> all = getAll();
+        for (OperationKeyword keyword : all) {
+            if (keyword.getName().equals(name)) {
+                return keyword;
+            }
+        }
+
+        return null;
     }
 
 }
