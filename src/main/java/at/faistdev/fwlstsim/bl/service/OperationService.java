@@ -1,6 +1,7 @@
 package at.faistdev.fwlstsim.bl.service;
 
 import at.faistdev.fwlstsim.dataaccess.cache.OperationCache;
+import at.faistdev.fwlstsim.dataaccess.cache.VehicleCache;
 import at.faistdev.fwlstsim.dataaccess.entities.Operation;
 import at.faistdev.fwlstsim.dataaccess.entities.OperationResource;
 import at.faistdev.fwlstsim.dataaccess.entities.OperationStatus;
@@ -120,5 +121,11 @@ public class OperationService {
             operation.addVehicle(vehicle);
             vehicle.addTarget(new VehicleTarget(operation.getLocation(), VehicleStatus.STATUS_6));
         }
+    }
+
+    public static List<Vehicle> getVehiclesWithPendingRadioMessage() {
+        return VehicleCache.getCache().getAll().stream()//
+                .filter(vehicle -> vehicle.getNextRadioMessage() != null)//
+                .collect(Collectors.toList());
     }
 }

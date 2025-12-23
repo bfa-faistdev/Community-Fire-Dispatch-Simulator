@@ -35,6 +35,7 @@ public class FirstVehicleArrivedTask extends OperationTask {
         }
 
         Vehicle leadVehicle = OperationService.getLeadVehicleOnSite(operation);
+        message = "Hier " + leadVehicle.getName() + ": " + message;
         leadVehicle.addRadioMessage(new RadioMessage(message));
     }
 

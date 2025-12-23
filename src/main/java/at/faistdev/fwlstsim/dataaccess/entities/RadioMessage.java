@@ -8,4 +8,8 @@ public class RadioMessage {
         this.message = message;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
 }

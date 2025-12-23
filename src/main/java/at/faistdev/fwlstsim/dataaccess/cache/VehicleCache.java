@@ -1,6 +1,7 @@
 package at.faistdev.fwlstsim.dataaccess.cache;
 
 import at.faistdev.fwlstsim.dataaccess.entities.Vehicle;
+import java.util.ArrayList;
 
 public class VehicleCache extends SingleListCache<Vehicle> {
 
@@ -12,6 +13,11 @@ public class VehicleCache extends SingleListCache<Vehicle> {
         }
 
         return INSTANCE;
+    }
+
+    public Vehicle getByName(String name) {
+        ArrayList<Vehicle> all = getAll();
+        return all.stream().filter(vehicle -> vehicle.getName().equals(name)).findAny().orElse(null);
     }
 
 }

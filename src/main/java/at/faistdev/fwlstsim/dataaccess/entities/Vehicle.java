@@ -63,6 +63,14 @@ public class Vehicle {
         return pendingRadioMessages.get(0);
     }
 
+    public void removeNextRadioMessage() {
+        if (pendingRadioMessages.isEmpty()) {
+            return;
+        }
+
+        pendingRadioMessages.remove(0);
+    }
+
     public VehicleHome getHome() {
         return home;
     }

@@ -6,6 +6,7 @@ package at.faistdev.fwlstsim;
 import at.faistdev.fwlstsim.bl.game.Game;
 import at.faistdev.fwlstsim.ui.CallTakerUi;
 import at.faistdev.fwlstsim.ui.DispatchUi;
+import at.faistdev.fwlstsim.ui.RadioUi;
 import com.formdev.flatlaf.FlatDarkLaf;
 
 /**
@@ -30,5 +31,6 @@ public class FwLstSim {
 
         CallTakerUi.create();
         DispatchUi.create();
+        RadioUi.create();
     }
 }
