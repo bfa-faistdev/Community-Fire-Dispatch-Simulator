@@ -19,4 +19,9 @@ public class Waypoint {
         return ticksToPreviousWaypoint;
     }
 
+    @Override
+    public String toString() {
+        return "Waypoint(" + location + "," + ticksToPreviousWaypoint + ")";
+    }
+
 }

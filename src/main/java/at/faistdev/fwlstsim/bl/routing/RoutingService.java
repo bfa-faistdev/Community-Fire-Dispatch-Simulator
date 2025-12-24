@@ -1,10 +1,12 @@
 package at.faistdev.fwlstsim.bl.routing;
 
 import at.faistdev.fwlstsim.bl.service.OperationService;
+import at.faistdev.fwlstsim.dataaccess.entities.Location;
 import at.faistdev.fwlstsim.dataaccess.entities.Vehicle;
 import at.faistdev.fwlstsim.dataaccess.entities.VehicleStatus;
 import at.faistdev.fwlstsim.dataaccess.entities.VehicleTarget;
 import at.faistdev.fwlstsim.dataaccess.entities.Waypoint;
+import java.util.List;
 
 public class RoutingService {
 
@@ -19,7 +21,7 @@ public class RoutingService {
         }
 
         if (nextTarget.getRoute().isEmpty()) {
-            calculateRoute();
+            calculateRoute(vehicle, nextTarget);
         }
 
         // ToDo: We could add a loop to do this forever until the condition is not met anymore
@@ -55,8 +57,11 @@ public class RoutingService {
         vehicle.removeTarget(nextTarget);
     }
 
-    private static void calculateRoute() {
-        // ToDo
+    private static void calculateRoute(Vehicle vehicle, VehicleTarget target) {
+        Location start = vehicle.getCurrentLocation();
+        Location end = target.getLocation();
+        List<Waypoint> route = RoutingApi.getRoute(start, end);
+        target.setRoute(route);
     }
 
     private static boolean isWaypointReached(long currentTick, VehicleTarget nextTarget, Waypoint waypoint) {

@@ -2,7 +2,7 @@ package at.faistdev.fwlstsim.dataaccess.loader;
 
 import at.faistdev.fwlstsim.dataaccess.cache.OperationKeywordCache;
 import at.faistdev.fwlstsim.dataaccess.cache.VehicleCache;
-import at.faistdev.fwlstsim.dataaccess.entities.LatLngLocation;
+import at.faistdev.fwlstsim.dataaccess.entities.Location;
 import at.faistdev.fwlstsim.dataaccess.entities.OperationKeyword;
 import at.faistdev.fwlstsim.dataaccess.entities.OperationResource;
 import at.faistdev.fwlstsim.dataaccess.entities.Vehicle;
@@ -29,7 +29,7 @@ public class DemoDataLoader extends PersistentDataLoader {
     }
 
     private void loadVehicles() {
-        VehicleHome vehicleHome = new VehicleHome("FF Blumegg Teipl", new LatLngLocation("Hauptstraße 64, 8502 Lannach", 0, 0));
+        VehicleHome vehicleHome = new VehicleHome("FF Blumegg Teipl", new Location("Hauptstraße 64, 8502 Lannach", 46.939554, 15.317044));
 
         {
             Vehicle vehicle = new Vehicle("TLF 1000 Blumegg Teipl", vehicleHome, List.of(OperationResource.CHAINSAW));

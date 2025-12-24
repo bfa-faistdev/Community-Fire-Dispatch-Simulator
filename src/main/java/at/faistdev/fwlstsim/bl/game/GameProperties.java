@@ -12,5 +12,6 @@ public class GameProperties {
     public static final OperationHandler OPERATION_HANDLER = new DemoOperationHandler();
     public static final PersistentDataLoader DATA_LOADER = new DemoDataLoader();
     public static final String NAME_OF_DISPATCH = "Florian Steiermark";
+    public static final String ROUTING_API_KEY = "";
 
 }

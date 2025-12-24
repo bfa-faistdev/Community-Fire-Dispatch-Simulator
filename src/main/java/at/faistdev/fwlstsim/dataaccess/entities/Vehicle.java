@@ -81,6 +81,7 @@ public class Vehicle {
 
     public void setCurrentLocation(Location currentLocation) {
         this.currentLocation = currentLocation;
+        System.err.println(getName() + " updated location to " + currentLocation);
     }
 
     public void sendHome() {
