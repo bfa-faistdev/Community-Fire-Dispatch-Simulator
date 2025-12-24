@@ -1,7 +1,7 @@
 package at.faistdev.fwlstsim.bl.game;
 
+import at.faistdev.fwlstsim.bl.routing.RoutingService;
 import at.faistdev.fwlstsim.bl.service.OperationService;
-import at.faistdev.fwlstsim.bl.service.RoutingService;
 import at.faistdev.fwlstsim.dataaccess.cache.OperationCache;
 import at.faistdev.fwlstsim.dataaccess.cache.VehicleCache;
 import at.faistdev.fwlstsim.dataaccess.entities.Operation;
@@ -73,7 +73,7 @@ public class Game implements Runnable {
     private void doRoutingAndStatusUpdates() {
         ArrayList<Vehicle> vehicles = VehicleCache.getCache().getAll();
         for (Vehicle vehicle : vehicles) {
-            RoutingService.doRouting(vehicle);
+            RoutingService.doRouting(currentTick, vehicle);
         }
     }
 
