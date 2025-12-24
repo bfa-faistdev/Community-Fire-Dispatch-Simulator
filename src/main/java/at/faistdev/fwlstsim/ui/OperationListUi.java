@@ -39,14 +39,18 @@ public class OperationListUi extends javax.swing.JFrame {
     private void startRefreshThreads() {
         new Thread(() -> {
             while (true) {
-                fillTable();
+                refresh();
                 try {
-                    Thread.sleep(10_000);
+                    Thread.sleep(5_000);
                 } catch (InterruptedException ex) {
                     System.getLogger(OperationListUi.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
                 }
             }
         }, "OperationListUi-FillTable").start();
+    }
+
+    public synchronized void refresh() {
+        fillTable();
     }
 
     private void fillTable() {

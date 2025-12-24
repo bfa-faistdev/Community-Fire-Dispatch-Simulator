@@ -106,6 +106,8 @@ public class CallTakerUi extends javax.swing.JFrame {
         btnEndCall.setEnabled(false);
         currentTalkingOperation = null;
         refreshIncomingCalls();
+
+        UiRegistry.get(OperationListUi.class).refresh();
     }
 
     private void insertCallText(String text) {

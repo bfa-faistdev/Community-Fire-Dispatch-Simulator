@@ -8,6 +8,7 @@ import at.faistdev.fwlstsim.dataaccess.entities.Operation;
 import at.faistdev.fwlstsim.dataaccess.entities.OperationKeyword;
 import at.faistdev.fwlstsim.dataaccess.entities.OperationResource;
 import at.faistdev.fwlstsim.dataaccess.tasks.FirstVehicleArrivedTask;
+import at.faistdev.fwlstsim.dataaccess.tasks.OperationFinishedTask;
 import at.faistdev.fwlstsim.dataaccess.tasks.UpdateProgressTask;
 import java.util.HashSet;
 import java.util.Set;
@@ -33,7 +34,7 @@ public class DemoOperationHandler extends OperationHandler {
         String callingNumber = "+43 664 960 2211";
         Location location = new Location("Sankt Josefer Straße, 8502 Lannach", 46.926147, 15.310162);
         Set<OperationResource> resources = new HashSet<>();
-        long duration = DurationUtil.getMinutes(45);
+        long duration = DurationUtil.getMinutes(2);
 
         Operation operation = new Operation(id, callText, callingNumber, location, resources, duration);
         addDemoTasksToOperation(operation);
@@ -43,5 +44,6 @@ public class DemoOperationHandler extends OperationHandler {
     private void addDemoTasksToOperation(Operation operation) {
         operation.addTask(new FirstVehicleArrivedTask("Einsatzsofortmeldung: PKW in Graben, keine Verletzten."));
         operation.addTask(new UpdateProgressTask());
+        operation.addTask(new OperationFinishedTask());
     }
 }

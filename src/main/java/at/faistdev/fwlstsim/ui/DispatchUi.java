@@ -105,6 +105,7 @@ public class DispatchUi extends javax.swing.JFrame {
     private void fillData() {
         callerNumberField.setText("");
         addressField.setText("");
+        keywordComboBox.setSelectedItem(null);
 
         if (selectedOperation == null) {
             return;

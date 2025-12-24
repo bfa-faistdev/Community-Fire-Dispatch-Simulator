@@ -5,6 +5,7 @@ import at.faistdev.fwlstsim.bl.service.OperationService;
 import at.faistdev.fwlstsim.dataaccess.cache.OperationCache;
 import at.faistdev.fwlstsim.dataaccess.cache.VehicleCache;
 import at.faistdev.fwlstsim.dataaccess.entities.Operation;
+import at.faistdev.fwlstsim.dataaccess.entities.OperationStatus;
 import at.faistdev.fwlstsim.dataaccess.entities.Vehicle;
 import at.faistdev.fwlstsim.dataaccess.tasks.OperationTask;
 import java.util.ArrayList;
@@ -41,14 +42,14 @@ public class Game implements Runnable {
     }
 
     private void requestOperationIfDemand() {
-        int activeOperations = getNumberOfCurrentActiveOperations();
+        long activeOperations = getNumberOfCurrentActiveOperations();
         if (activeOperations < GameProperties.MAX_ACTIVE_OPERATIONS) {
             OperationService.requestOperation(GameProperties.OPERATION_HANDLER);
         }
     }
 
-    private int getNumberOfCurrentActiveOperations() {
-        return OperationCache.getCache().size();
+    private long getNumberOfCurrentActiveOperations() {
+        return OperationCache.getCache().getAll().stream().filter(operation -> operation.getStatus() != OperationStatus.FINISHED).count();
     }
 
     private void executeNextTask(Operation operation) {

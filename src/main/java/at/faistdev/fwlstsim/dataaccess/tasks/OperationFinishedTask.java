@@ -3,6 +3,8 @@ package at.faistdev.fwlstsim.dataaccess.tasks;
 import at.faistdev.fwlstsim.dataaccess.entities.Operation;
 import at.faistdev.fwlstsim.dataaccess.entities.OperationStatus;
 import at.faistdev.fwlstsim.dataaccess.entities.Vehicle;
+import at.faistdev.fwlstsim.ui.DispatchUi;
+import at.faistdev.fwlstsim.ui.UiRegistry;
 import java.util.Set;
 
 public class OperationFinishedTask extends OperationTask {
@@ -21,6 +23,7 @@ public class OperationFinishedTask extends OperationTask {
         }
 
         operation.setStatus(OperationStatus.FINISHED);
+        UiRegistry.get(DispatchUi.class).setSelectedOperation(null);
     }
 
     @Override
