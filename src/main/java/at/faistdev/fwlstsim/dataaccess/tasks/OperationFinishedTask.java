@@ -1,6 +1,7 @@
 package at.faistdev.fwlstsim.dataaccess.tasks;
 
 import at.faistdev.fwlstsim.dataaccess.entities.Operation;
+import at.faistdev.fwlstsim.dataaccess.entities.OperationStatus;
 import at.faistdev.fwlstsim.dataaccess.entities.Vehicle;
 import java.util.Set;
 
@@ -18,6 +19,8 @@ public class OperationFinishedTask extends OperationTask {
             operation.removeVehicle(vehicle);
             vehicle.sendHome();
         }
+
+        operation.setStatus(OperationStatus.FINISHED);
     }
 
     @Override

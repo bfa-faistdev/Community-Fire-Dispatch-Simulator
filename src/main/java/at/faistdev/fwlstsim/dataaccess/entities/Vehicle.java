@@ -43,6 +43,10 @@ public class Vehicle {
         targets.remove(target);
     }
 
+    public void clearTargets() {
+        targets.clear();
+    }
+
     public VehicleTarget getNextTarget() {
         if (targets.isEmpty()) {
             return null;

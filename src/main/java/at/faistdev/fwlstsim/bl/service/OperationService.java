@@ -119,6 +119,7 @@ public class OperationService {
             }
 
             operation.addVehicle(vehicle);
+            vehicle.clearTargets();
             vehicle.addTarget(new VehicleTarget(operation.getLocation(), VehicleStatus.STATUS_6));
         }
     }
