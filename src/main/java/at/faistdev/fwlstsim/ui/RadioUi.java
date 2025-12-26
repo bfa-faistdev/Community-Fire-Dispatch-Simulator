@@ -78,7 +78,7 @@ public class RadioUi extends javax.swing.JFrame {
         responseEndMessageButton.setEnabled(true);
     }
 
-    private void fillRadioRequests() {
+    public void fillRadioRequests() {
         requestPanel.removeAll();
 
         List<Vehicle> vehicles = OperationService.getVehiclesWithPendingRadioMessage();
@@ -139,6 +139,7 @@ public class RadioUi extends javax.swing.JFrame {
         currentConversation = vehicle;
         callButton.setEnabled(false);
         callVehicleField.setText("");
+        callVehicleField.setEnabled(false);
 
         addRightRadioMessage(getCallVehicleMessage(vehicle));
     }
@@ -195,6 +196,7 @@ public class RadioUi extends javax.swing.JFrame {
         currentConversation = null;
         responseEndMessageButton.setEnabled(false);
         callButton.setEnabled(true);
+        callVehicleField.setEnabled(true);
         fillRadioRequests();
     }
 

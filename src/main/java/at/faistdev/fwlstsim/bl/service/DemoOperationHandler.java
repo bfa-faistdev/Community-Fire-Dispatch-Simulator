@@ -10,7 +10,6 @@ import at.faistdev.fwlstsim.dataaccess.entities.OperationResource;
 import at.faistdev.fwlstsim.dataaccess.tasks.FirstVehicleArrivedTask;
 import at.faistdev.fwlstsim.dataaccess.tasks.OperationFinishedTask;
 import at.faistdev.fwlstsim.dataaccess.tasks.UpdateProgressTask;
-import java.util.HashSet;
 import java.util.Set;
 
 public class DemoOperationHandler extends OperationHandler {
@@ -33,7 +32,7 @@ public class DemoOperationHandler extends OperationHandler {
         String callText = "Hallo, mir ist mein Auto in den Graben gerutscht und ich komme nicht mehr raus.";
         String callingNumber = "+43 664 960 2211";
         Location location = new Location("Sankt Josefer Straße, 8502 Lannach", 46.926147, 15.310162);
-        Set<OperationResource> resources = new HashSet<>();
+        Set<OperationResource> resources = Set.of(OperationResource.WINCH);
         long duration = DurationUtil.getMinutes(2);
 
         Operation operation = new Operation(id, callText, callingNumber, location, resources, duration);

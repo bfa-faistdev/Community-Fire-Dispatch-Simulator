@@ -474,6 +474,7 @@ public class DispatchUi extends javax.swing.JFrame {
 
         lowerPanel.setLayout(new java.awt.GridLayout(1, 2));
 
+        dataPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10));
         dataPanel.setLayout(new javax.swing.BoxLayout(dataPanel, javax.swing.BoxLayout.Y_AXIS));
 
         progressPanel.setMaximumSize(new java.awt.Dimension(10000, 50));

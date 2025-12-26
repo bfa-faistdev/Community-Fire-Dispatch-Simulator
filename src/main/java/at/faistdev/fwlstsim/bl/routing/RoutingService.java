@@ -21,7 +21,13 @@ public class RoutingService {
         }
 
         if (nextTarget.getRoute().isEmpty()) {
-            calculateRoute(vehicle, nextTarget);
+            try {
+                calculateRoute(vehicle, nextTarget);
+            } catch (Throwable t) {
+                System.err.println(t);
+                System.out.println("Retry calculate route at next tick");
+                return;
+            }
         }
 
         // ToDo: We could add a loop to do this forever until the condition is not met anymore

@@ -70,7 +70,7 @@ public class OperationService {
 
     public static Set<OperationResource> getOnSiteResources(Operation operation) {
         return operation.getVehicles().stream()//
-                .filter(v -> v.getStatus() == VehicleStatus.STATUS_3)//
+                .filter(v -> v.getStatus() == VehicleStatus.STATUS_6)//
                 .flatMap(v -> v.getResources().stream())//
                 .collect(Collectors.toSet());
     }

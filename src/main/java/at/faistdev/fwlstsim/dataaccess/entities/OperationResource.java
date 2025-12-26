@@ -2,7 +2,9 @@ package at.faistdev.fwlstsim.dataaccess.entities;
 
 public enum OperationResource {
 
-    CHAINSAW("Kettensäge");
+    CHAINSAW("Kettensäge"),
+    WATER_TANK_VEHICLE("Tanklöschfahrzeug"),
+    WINCH("Seilwinde");
 
     private final String text;
 

@@ -199,7 +199,7 @@ public class CallTakerUi extends javax.swing.JFrame {
 
         callPromptsPanel.setLayout(new javax.swing.BoxLayout(callPromptsPanel, javax.swing.BoxLayout.Y_AXIS));
 
-        callPromptsInnerPanel.setBackground(new java.awt.Color(255, 255, 255));
+        callPromptsInnerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 1, 10));
         callPromptsInnerPanel.setMaximumSize(new java.awt.Dimension(32767, 50));
         callPromptsInnerPanel.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -219,7 +219,7 @@ public class CallTakerUi extends javax.swing.JFrame {
 
         connectedCallPanel.setLayout(new javax.swing.BoxLayout(connectedCallPanel, javax.swing.BoxLayout.Y_AXIS));
 
-        actionPanel.setBackground(new java.awt.Color(255, 255, 255));
+        actionPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 1, 10));
         actionPanel.setMaximumSize(new java.awt.Dimension(32767, 50));
         actionPanel.setLayout(new java.awt.GridLayout(1, 0));
 
