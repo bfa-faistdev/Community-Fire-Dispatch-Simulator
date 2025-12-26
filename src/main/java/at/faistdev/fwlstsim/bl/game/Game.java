@@ -8,6 +8,7 @@ import at.faistdev.fwlstsim.dataaccess.entities.Operation;
 import at.faistdev.fwlstsim.dataaccess.entities.OperationStatus;
 import at.faistdev.fwlstsim.dataaccess.entities.Vehicle;
 import at.faistdev.fwlstsim.dataaccess.tasks.OperationTask;
+import at.faistdev.fwlstsim.ui.events.TickUpdateUiEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,12 @@ public class Game implements Runnable {
     @Override
     public void run() {
         while (true) {
+            if (GameProperties.SPEED == 0) {
+                System.out.println("Game is paused");
+                sleep();
+                continue;
+            }
+
             requestOperationIfDemand();
             doRoutingAndStatusUpdates();
 
@@ -31,14 +38,28 @@ public class Game implements Runnable {
             }
 
             currentTick++;
+            new TickUpdateUiEvent(currentTick).notifyUi();
             System.out.println("Current Tick = " + currentTick);
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                System.getLogger(Game.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-            }
+            sleep();
         }
+    }
+
+    private void sleep() {
+        try {
+            long msToSleep = getMsToSleep();
+            Thread.sleep(msToSleep);
+        } catch (InterruptedException ex) {
+            System.getLogger(Game.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+    }
+
+    private long getMsToSleep() {
+        int speed = GameProperties.SPEED;
+        if (speed == 0) {
+            return 1000;
+        }
+
+        return 1000 / GameProperties.SPEED;
     }
 
     private void requestOperationIfDemand() {
