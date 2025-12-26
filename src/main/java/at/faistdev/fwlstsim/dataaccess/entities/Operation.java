@@ -20,6 +20,7 @@ public class Operation {
     private final List<OperationTask> pendingTasks;
 
     private OperationKeyword operationKeyword;
+    private String infoText;
     private long lastResourceRequest = 0;
     private long progressInTicks = 0;
     private OperationStatus status = OperationStatus.INITAL;
@@ -129,6 +130,14 @@ public class Operation {
 
     public String getCallingNumber() {
         return callingNumber;
+    }
+
+    public String getInfoText() {
+        return infoText;
+    }
+
+    public void setInfoText(String infoText) {
+        this.infoText = infoText;
     }
 
 }

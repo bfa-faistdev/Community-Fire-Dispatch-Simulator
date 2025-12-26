@@ -106,6 +106,7 @@ public class DispatchUi extends javax.swing.JFrame {
         callerNumberField.setText("");
         addressField.setText("");
         keywordComboBox.setSelectedItem(null);
+        infoTextField.setText("");
 
         if (selectedOperation == null) {
             return;
@@ -113,6 +114,7 @@ public class DispatchUi extends javax.swing.JFrame {
 
         callerNumberField.setText(selectedOperation.getCallingNumber());
         addressField.setText(selectedOperation.getLocation().getText());
+        infoTextField.setText(selectedOperation.getInfoText());
 
         initKeywordComboBox();
         if (selectedOperation.getOperationKeyword() != null) {
@@ -328,6 +330,7 @@ public class DispatchUi extends javax.swing.JFrame {
 
         dispatchVehicles();
         setOperationKeyword();
+        setInfoText();
 
         loadAllDispatchedVehicles();
         dispatchButton.setEnabled(false);
@@ -347,6 +350,11 @@ public class DispatchUi extends javax.swing.JFrame {
                 selectedOperation.setOperationKeyword(keyword);
             }
         }
+    }
+
+    private void setInfoText() {
+        String text = infoTextField.getText();
+        selectedOperation.setInfoText(text);
     }
 
     /**
