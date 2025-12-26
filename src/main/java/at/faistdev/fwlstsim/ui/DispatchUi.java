@@ -102,6 +102,12 @@ public class DispatchUi extends javax.swing.JFrame {
         updateProgress();
     }
 
+    public void setFinishedOperation(Operation operation) {
+        if (selectedOperation != null && selectedOperation.equals(operation)) {
+            setSelectedOperation(null);
+        }
+    }
+
     private void fillData() {
         callerNumberField.setText("");
         addressField.setText("");

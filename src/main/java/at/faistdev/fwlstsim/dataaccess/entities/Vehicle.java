@@ -1,7 +1,6 @@
 package at.faistdev.fwlstsim.dataaccess.entities;
 
-import at.faistdev.fwlstsim.ui.RadioUi;
-import at.faistdev.fwlstsim.ui.UiRegistry;
+import at.faistdev.fwlstsim.ui.events.RadioMessageAddedUiEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +58,7 @@ public class Vehicle {
 
     public void addRadioMessage(RadioMessage message) {
         pendingRadioMessages.add(message);
-        UiRegistry.get(RadioUi.class).fillRadioRequests();
+        new RadioMessageAddedUiEvent().notifyUi();
     }
 
     public RadioMessage getNextRadioMessage() {
