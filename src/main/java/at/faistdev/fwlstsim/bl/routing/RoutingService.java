@@ -34,6 +34,8 @@ public class RoutingService {
         Waypoint waypoint = nextTarget.getNextWaypoint();
         if (isWaypointReached(currentTick, nextTarget, waypoint)) {
             moveToWaypoint(currentTick, vehicle, nextTarget, waypoint);
+            long ticksRemainingToTarget = nextTarget.getTicksRemainingToTarget();
+            System.out.println("[" + vehicle.getName() + "] time remaing to target: " + ticksRemainingToTarget + " (" + String.format("%.2f", ticksRemainingToTarget / 60.0) + " min)");
         }
 
         if (isRouteComplete(nextTarget)) {

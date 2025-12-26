@@ -50,4 +50,13 @@ public class VehicleTarget {
     public void removeWaypoint(Waypoint waypoint) {
         route.remove(waypoint);
     }
+
+    public long getTicksRemainingToTarget() {
+        long time = 0;
+        for (Waypoint waypoint : route) {
+            time += waypoint.getTicksToPreviousWaypoint();
+        }
+
+        return time;
+    }
 }

@@ -1,0 +1,20 @@
+
+var query = `
+[out:json][timeout:180];
+area["name"="Bezirk Deutschlandsberg"]["admin_level"="6"]["ref"="DL"]->.searchArea;
+
+(
+  node(area.searchArea)["addr:housenumber"];
+  way(area.searchArea)["addr:housenumber"];
+);
+out center tags;
+`;
+var result = await fetch(
+  "https://overpass-api.de/api/interpreter",
+  {
+    method: "POST",
+    body: "data=" + encodeURIComponent(query),
+  }
+).then((data) => {console.log(data); return data.json();});
+
+console.log(JSON.stringify(result, null, 2));

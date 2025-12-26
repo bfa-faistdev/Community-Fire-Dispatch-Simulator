@@ -2,14 +2,29 @@ package at.faistdev.fwlstsim.dataaccess.entities;
 
 public class Location {
 
-    private final String text;
+    private final String street;
+    private final String housenumber;
+    private final String postalCode;
+    private final String city;
     private final double lat;
     private final double lng;
 
-    public Location(String text, double lat, double lng) {
-        this.text = text;
+    public Location(String street, String housenumber, String postalCode, String city, double lat, double lng) {
+        this.street = street;
+        this.housenumber = housenumber;
+        this.postalCode = postalCode;
+        this.city = city;
         this.lat = lat;
         this.lng = lng;
+    }
+
+    public Location(double lat, double lng) {
+        this.lat = lat;
+        this.lng = lng;
+        this.street = "";
+        this.city = "";
+        this.housenumber = "";
+        this.postalCode = "";
     }
 
     public double getLat() {
@@ -21,7 +36,7 @@ public class Location {
     }
 
     public Location getCopy() {
-        return new Location(text, lat, lng);
+        return new Location(street, housenumber, postalCode, city, lat, lng);
     }
 
     public boolean equals(Object obj) {
@@ -31,12 +46,28 @@ public class Location {
     }
 
     public String getText() {
-        return text;
+        return street + " " + housenumber + ", " + postalCode + " " + city;
     }
 
     @Override
     public String toString() {
-        return "Location(" + text + "," + lat + "," + lng + ")";
+        return "Location(" + getText() + "," + lat + "," + lng + ")";
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getHousenumber() {
+        return housenumber;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public String getCity() {
+        return city;
     }
 
 }

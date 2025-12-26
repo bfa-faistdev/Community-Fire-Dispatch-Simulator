@@ -55,7 +55,7 @@ public class RoutingApi {
                 Integer wayPointIdx = wayPoints.get(i);
                 List<Double> coordinates = getCoordinatesOfWaypoint(feature, wayPointIdx);
 
-                finalWaypoints.add(new Waypoint(new Location("", coordinates.get(1), coordinates.get(0)), (long) secondsPerWaypoint));
+                finalWaypoints.add(new Waypoint(new Location(coordinates.get(1), coordinates.get(0)), (long) secondsPerWaypoint));
             }
         }
 

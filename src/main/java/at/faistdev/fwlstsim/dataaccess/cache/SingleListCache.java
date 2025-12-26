@@ -5,6 +5,7 @@
 package at.faistdev.fwlstsim.dataaccess.cache;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  *
@@ -32,5 +33,9 @@ public abstract class SingleListCache<E> {
 
     public synchronized ArrayList<E> getAll() {
         return entities;
+    }
+
+    public synchronized void addAll(Collection e) {
+        entities.addAll(e);
     }
 }
