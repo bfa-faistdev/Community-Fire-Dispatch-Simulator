@@ -75,7 +75,7 @@ public class OperationListUi extends javax.swing.JFrame {
         int i = 0;
         for (Operation operation : operations) {
             String keyword = operation.getOperationKeyword() != null ? operation.getOperationKeyword().getName() : "";
-            Object[] row = {operation.getId(), keyword, "", operation.getLocation().getText(), operation.getProgressInPercent() + " %"};
+            Object[] row = {operation.getId(), keyword, operation.getInfoText(), operation.getLocation().getText(), operation.getProgressInPercent() + " %"};
 
             data[i] = row;
             i++;
