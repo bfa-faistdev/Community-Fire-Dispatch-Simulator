@@ -88,7 +88,6 @@ public class DispatchUi extends javax.swing.JFrame {
 
     public void setSelectedOperation(Operation operation) {
         selectedOperation = operation;
-        System.out.println("Selected operation: " + selectedOperation.getCallingNumber());
 
         if (operation == null) {
             progressPanel.setVisible(false);
@@ -156,6 +155,8 @@ public class DispatchUi extends javax.swing.JFrame {
         innerDispatchedVehiclesScrollPanel.removeAll();
 
         if (selectedOperation == null) {
+            innerDispatchedVehiclesScrollPanel.revalidate();
+            innerDispatchedVehiclesScrollPanel.repaint();
             return;
         }
 

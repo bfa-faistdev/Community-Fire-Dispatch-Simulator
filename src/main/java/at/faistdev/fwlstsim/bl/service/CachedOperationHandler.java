@@ -22,7 +22,7 @@ public class CachedOperationHandler extends OperationHandler {
         Location location = getRandomOperationLocation();
 
         Operation operation = new Operation(getNextId(), possibleOperation.getCallText(), possibleOperation.getCallingNumber(), location, possibleOperation.getRequiredResources(),
-                DurationUtil.getMinutes(45));
+                DurationUtil.getMinutes(10));
 
         addTasksToOperation(operation, possibleOperation.getInitalRadioMessage());
 

@@ -4,7 +4,7 @@ import at.faistdev.fwlstsim.dataaccess.entities.Operation;
 import at.faistdev.fwlstsim.dataaccess.entities.OperationStatus;
 import at.faistdev.fwlstsim.dataaccess.entities.Vehicle;
 import at.faistdev.fwlstsim.ui.events.OperationFinishedUiEvent;
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.Set;
 
 public class OperationFinishedTask extends OperationTask {
@@ -18,9 +18,7 @@ public class OperationFinishedTask extends OperationTask {
     public void execute(Operation operation) {
         Set<Vehicle> vehicles = operation.getVehicles();
 
-        Iterator<Vehicle> iterator = vehicles.iterator();
-        while (iterator.hasNext()) {
-            Vehicle vehicle = iterator.next();
+        for (Vehicle vehicle : new ArrayList<>(vehicles)) {
             operation.removeVehicle(vehicle);
             vehicle.sendHome();
         }
