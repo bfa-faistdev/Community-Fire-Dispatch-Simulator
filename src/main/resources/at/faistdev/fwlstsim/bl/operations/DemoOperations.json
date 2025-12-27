@@ -1,0 +1,871 @@
+{
+    "operations": [
+        {
+            "type": "T03-VU-Berg.Öl.",
+            "callingNumber": "+436649601199",
+            "callText": "Guten Tag, ich bin mit meinem Auto in den Graben gerutscht und komme nicht mehr raus. Es ist niemand verletzt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: PKW in Graben, keine Verletzten.",
+            "requiredResources": [
+                "WINCH",
+                "LIGHTING"
+            ]
+        },
+        {
+            "type": "T02-Türöffnung",
+            "callingNumber": "+436641234567",
+            "callText": "Mein Nachbar reagiert seit Stunden nicht mehr und die Wohnungstür ist versperrt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Dringende Türöffnung, vermutlich hilflose Person.",
+            "requiredResources": [
+                "DOOR_OPENING_KIT"
+            ]
+        },
+        {
+            "type": "T03-VU-Berg.Öl.",
+            "callingNumber": "+436503456789",
+            "callText": "Mein Auto ist von der Straße abgekommen und liegt im Straßengraben, es tropft Öl.",
+            "initialRadioMessage": "Einsatzsofortmeldung: PKW im Graben, Betriebsmittel ausgelaufen.",
+            "requiredResources": [
+                "WINCH",
+                "OIL_SPILL",
+                "LIGHTING"
+            ]
+        },
+        {
+            "type": "T03-VU-mit-Verl.",
+            "callingNumber": "+436991112233",
+            "callText": "Nach einem Auffahrunfall ist eine Person verletzt und kann sich kaum bewegen.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Verkehrsunfall mit verletzter Person.",
+            "requiredResources": [
+                "SPINE_BOARD",
+                "LIGHTING",
+                "SMALL_WATER_TANK_LESS_THAN_1_000_L",
+                "OIL_SPILL"
+            ]
+        },
+        {
+            "type": "T04-Pumparbeiten",
+            "callingNumber": "+436771234890",
+            "callText": "Unser Keller ist nach dem starken Regen komplett überflutet.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Wasserschaden im Keller, Pumparbeiten notwendig.",
+            "requiredResources": [
+                "FIRE_PUMP",
+                "WATER_DAMAGE_KIT",
+                "LIGHTING"
+            ]
+        },
+        {
+            "type": "T07-Unwetter",
+            "callingNumber": "+436681998877",
+            "callText": "Mehrere Bäume liegen nach dem Sturm über der Straße und blockieren den Verkehr.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Unwettereinsatz, Baum über Fahrbahn.",
+            "requiredResources": [
+                "CHAINSAW",
+                "LIGHTING",
+                "WINCH"
+            ]
+        },
+        {
+            "type": "T08-Tierrettung",
+            "callingNumber": "+436761010101",
+            "callText": "Eine Katze sitzt seit dem Vormittag auf einem hohen Baum und kommt nicht mehr herunter.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Tierrettung, Katze auf Baum.",
+            "requiredResources": [
+                "LADDER"
+            ]
+        },
+        {
+            "type": "T10-VU-eingeklemmt",
+            "callingNumber": "+436641919191",
+            "callText": "Ein Auto ist frontal gegen einen Baum gefahren, der Fahrer ist eingeklemmt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Schwerer Verkehrsunfall, Person eingeklemmt.",
+            "requiredResources": [
+                "HYDRAULIC_SPREADER",
+                "SPINE_BOARD",
+                "LIGHTING",
+                "SMALL_WATER_TANK_LESS_THAN_1_000_L",
+                "OIL_SPILL",
+                "WINCH"
+            ]
+        },
+        {
+            "type": "T17-Schadstoff",
+            "callingNumber": "+436701234321",
+            "callText": "Aus einem Tank ist eine Flüssigkeit ausgelaufen, es riecht stark nach Chemie.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Schadstoffaustritt unbekannter Substanz.",
+            "requiredResources": [
+                "GAS_EXWARN",
+                "OIL_SPILL",
+                "VENTILATION",
+                "LIGHTING",
+                "SMALL_WATER_TANK_LESS_THAN_1_000_L"
+            ]
+        },
+        {
+            "type": "T02-Türöffnung",
+            "callingNumber": "+436602223334",
+            "callText": "Eine ältere Dame ist im Lift stecken geblieben und klagt über Atemnot.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Liftöffnung, eingeschlossene Person.",
+            "requiredResources": [
+                "DOOR_OPENING_KIT"
+            ]
+        },
+        {
+            "type": "T03-VU-Berg.Öl.",
+            "callingNumber": "+436761234999",
+            "callText": "Ein Motorrad ist in einer Kurve gestürzt, es liegt Öl auf der Fahrbahn, der Fahrer ist unverletzt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Motorradsturz, Ölspur, keine Verletzten.",
+            "requiredResources": [
+                "OIL_SPILL",
+                "LIGHTING",
+                "SMALL_WATER_TANK_LESS_THAN_1_000_L"
+            ]
+        },
+        {
+            "type": "T04-Pumparbeiten",
+            "callingNumber": "+436501112244",
+            "callText": "Nach einem Wasserrohrbruch steht die Tiefgarage unter Wasser.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Überflutete Tiefgarage, Pumparbeiten.",
+            "requiredResources": [
+                "FIRE_PUMP",
+                "WATER_DAMAGE_KIT",
+                "LIGHTING"
+            ]
+        },
+        {
+            "type": "T07-Unwetter",
+            "callingNumber": "+436641010101",
+            "callText": "Ein umgestürzter Baum liegt auf einem geparkten Auto, die Straße ist blockiert.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Unwetterschaden, Baum auf PKW.",
+            "requiredResources": [
+                "CHAINSAW",
+                "WINCH",
+                "LIGHTING"
+            ]
+        },
+        {
+            "type": "T08-Tierrettung",
+            "callingNumber": "+436781919292",
+            "callText": "Eine Kuh ist in eine Jauchengrube gestürzt und kann sich nicht selbst befreien.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Tierrettung, Großtier in Notlage.",
+            "requiredResources": [
+                "WINCH",
+                "LIGHTING"
+            ]
+        },
+        {
+            "type": "T10-VU-eingeklemmt",
+            "callingNumber": "+436699887766",
+            "callText": "Nach einem Frontalzusammenstoß sind zwei Fahrzeuge stark deformiert, eine Person ist eingeklemmt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Verkehrsunfall mit eingeklemmter Person.",
+            "requiredResources": [
+                "HYDRAULIC_SPREADER",
+                "SPINE_BOARD",
+                "OIL_SPILL",
+                "LIGHTING",
+                "SMALL_WATER_TANK_LESS_THAN_1_000_L"
+            ]
+        },
+        {
+            "type": "T11-Menschenrettung",
+            "callingNumber": "+436732224455",
+            "callText": "Ein Arbeiter ist mit der Hand in einer Maschine eingeklemmt und kann sich nicht befreien.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Menschenrettung aus Maschine.",
+            "requiredResources": [
+                "HYDRAULIC_SPREADER",
+                "SPINE_BOARD",
+                "LIGHTING"
+            ]
+        },
+        {
+            "type": "T17-Schadstoff",
+            "callingNumber": "+436551234888",
+            "callText": "Nach einem Unfall tritt Diesel aus einem LKW aus und läuft in einen Straßengraben.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Schadstoffaustritt, Diesel ausgelaufen.",
+            "requiredResources": [
+                "OIL_SPILL",
+                "GAS_EXWARN",
+                "LIGHTING",
+                "SMALL_WATER_TANK_LESS_THAN_1_000_L"
+            ]
+        },
+        {
+            "type": "T03-VU-Berg.Öl.",
+            "callingNumber": "+436601001001",
+            "callText": "Mein PKW ist bei Regen von der Fahrbahn abgekommen und steckt im Straßengraben fest.",
+            "initialRadioMessage": "Einsatzsofortmeldung: PKW im Graben, keine Verletzten.",
+            "requiredResources": [
+                "WINCH",
+                "LIGHTING"
+            ]
+        },
+        {
+            "type": "T03-VU-Berg.Öl.",
+            "callingNumber": "+436601001002",
+            "callText": "Nach einem Ausweichmanöver steht mein Auto quer auf der Straße, es läuft Öl aus.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Verkehrsunfall ohne Verletzte, Ölspur.",
+            "requiredResources": [
+                "OIL_SPILL",
+                "LIGHTING"
+            ]
+        },
+        {
+            "type": "T03-VU-Berg.Öl.",
+            "callingNumber": "+436601001003",
+            "callText": "Ein Lieferwagen ist im Schnee hängen geblieben und kommt nicht mehr weiter.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Fahrzeugbergung, winterliche Fahrbahn.",
+            "requiredResources": [
+                "WINCH",
+                "LIGHTING"
+            ]
+        },
+        {
+            "type": "T03-VU-Berg.Öl.",
+            "callingNumber": "+436601001004",
+            "callText": "Motorrad umgefallen, Treibstoff läuft auf die Fahrbahn, niemand verletzt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Motorradsturz, Betriebsmittel ausgelaufen.",
+            "requiredResources": [
+                "OIL_SPILL",
+                "LIGHTING",
+                "SMALL_WATER_TANK_LESS_THAN_1_000_L"
+            ]
+        },
+        {
+            "type": "T03-VU-Berg.Öl.",
+            "callingNumber": "+436601001005",
+            "callText": "PKW nach Wildausweichung im Feld gelandet, keine Verletzten.",
+            "initialRadioMessage": "Einsatzsofortmeldung: PKW außerhalb der Fahrbahn.",
+            "requiredResources": [
+                "WINCH",
+                "LIGHTING"
+            ]
+        },
+        {
+            "type": "T03-VU-Berg.Öl.",
+            "callingNumber": "+436601001006",
+            "callText": "Auto auf Parkplatz gegen Begrenzung gefahren, Öl tropft aus dem Motorraum.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Ölspur nach Verkehrsunfall.",
+            "requiredResources": [
+                "OIL_SPILL",
+                "LIGHTING"
+            ]
+        },
+        {
+            "type": "T03-VU-Berg.Öl.",
+            "callingNumber": "+436601001007",
+            "callText": "Kleintransporter steckt in einer Baustelle fest und blockiert die Fahrbahn.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Fahrzeugbergung erforderlich.",
+            "requiredResources": [
+                "WINCH",
+                "LIGHTING"
+            ]
+        },
+        {
+            "type": "T03-VU-Berg.Öl.",
+            "callingNumber": "+436601001008",
+            "callText": "PKW ist in einer Kurve ins Rutschen geraten, Betriebsmittel ausgelaufen.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Verkehrsunfall ohne Verletzte, Öl auf Fahrbahn.",
+            "requiredResources": [
+                "OIL_SPILL",
+                "LIGHTING",
+                "SMALL_WATER_TANK_LESS_THAN_1_000_L"
+            ]
+        },
+        {
+            "type": "T03-VU-Berg.Öl.",
+            "callingNumber": "+436601001009",
+            "callText": "Fahrzeug sitzt mit Unterboden auf und kann nicht mehr selbstständig weiterfahren.",
+            "initialRadioMessage": "Einsatzsofortmeldung: PKW aufgesessen.",
+            "requiredResources": [
+                "WINCH",
+                "LIGHTING"
+            ]
+        },
+        {
+            "type": "T03-VU-Berg.Öl.",
+            "callingNumber": "+436601001010",
+            "callText": "Nach leichtem Unfall tritt Kühlflüssigkeit aus dem Fahrzeug aus.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Betriebsmittelaustritt nach VU.",
+            "requiredResources": [
+                "OIL_SPILL",
+                "LIGHTING"
+            ]
+        },
+        {
+            "type": "T03-VU-mit-Verl.",
+            "callingNumber": "+436602002001",
+            "callText": "Nach einem Auffahrunfall klagt eine Person über starke Nackenschmerzen.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Verkehrsunfall mit verletzter Person.",
+            "requiredResources": [
+                "SPINE_BOARD",
+                "LIGHTING",
+                "OIL_SPILL"
+            ]
+        },
+        {
+            "type": "T03-VU-mit-Verl.",
+            "callingNumber": "+436602002002",
+            "callText": "Zwei Autos kollidiert, eine Person ist verletzt und sitzt noch im Fahrzeug.",
+            "initialRadioMessage": "Einsatzsofortmeldung: VU mit Verletzten.",
+            "requiredResources": [
+                "SPINE_BOARD",
+                "LIGHTING",
+                "SMALL_WATER_TANK_LESS_THAN_1_000_L"
+            ]
+        },
+        {
+            "type": "T03-VU-mit-Verl.",
+            "callingNumber": "+436602002003",
+            "callText": "Motorradfahrer gestürzt und verletzt, Motorrad verliert Öl.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Motorradunfall mit Verletzten.",
+            "requiredResources": [
+                "SPINE_BOARD",
+                "OIL_SPILL",
+                "LIGHTING"
+            ]
+        },
+        {
+            "type": "T03-VU-mit-Verl.",
+            "callingNumber": "+436602002004",
+            "callText": "PKW gegen Leitplanke, Fahrer verletzt aber nicht eingeklemmt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Verkehrsunfall mit verletzter Person.",
+            "requiredResources": [
+                "SPINE_BOARD",
+                "LIGHTING",
+                "WINCH"
+            ]
+        },
+        {
+            "type": "T03-VU-mit-Verl.",
+            "callingNumber": "+436602002005",
+            "callText": "Zusammenstoß im Kreuzungsbereich, eine Person verletzt, Öl läuft aus.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Kreuzungsunfall mit Verletzten.",
+            "requiredResources": [
+                "SPINE_BOARD",
+                "OIL_SPILL",
+                "LIGHTING"
+            ]
+        },
+        {
+            "type": "T03-VU-mit-Verl.",
+            "callingNumber": "+436602002006",
+            "callText": "PKW überschlagen, Fahrer verletzt aber ansprechbar.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Überschlag, verletzte Person.",
+            "requiredResources": [
+                "SPINE_BOARD",
+                "LIGHTING",
+                "WINCH"
+            ]
+        },
+        {
+            "type": "T03-VU-mit-Verl.",
+            "callingNumber": "+436602002007",
+            "callText": "Auffahrunfall bei Stauende, eine Person klagt über Rückenschmerzen.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Auffahrunfall mit Verletzten.",
+            "requiredResources": [
+                "SPINE_BOARD",
+                "LIGHTING"
+            ]
+        },
+        {
+            "type": "T03-VU-mit-Verl.",
+            "callingNumber": "+436602002008",
+            "callText": "PKW gegen Baum, Beifahrer verletzt, Fahrzeug verliert Betriebsmittel.",
+            "initialRadioMessage": "Einsatzsofortmeldung: VU mit Verletzten und Ölspur.",
+            "requiredResources": [
+                "SPINE_BOARD",
+                "OIL_SPILL",
+                "LIGHTING",
+                "SMALL_WATER_TANK_LESS_THAN_1_000_L"
+            ]
+        },
+        {
+            "type": "T03-VU-mit-Verl.",
+            "callingNumber": "+436602002009",
+            "callText": "Motorrad und PKW kollidiert, Motorradfahrer verletzt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Verkehrsunfall mit verletztem Motorradfahrer.",
+            "requiredResources": [
+                "SPINE_BOARD",
+                "OIL_SPILL",
+                "LIGHTING"
+            ]
+        },
+        {
+            "type": "T03-VU-mit-Verl.",
+            "callingNumber": "+436602002010",
+            "callText": "Seitlicher Zusammenstoß zweier Fahrzeuge, eine Person verletzt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Seitlicher VU mit Verletzten.",
+            "requiredResources": [
+                "SPINE_BOARD",
+                "LIGHTING",
+                "SMALL_WATER_TANK_LESS_THAN_1_000_L"
+            ]
+        },
+        {
+            "type": "T02-Türöffnung",
+            "callingNumber": "+436600000201",
+            "callText": "Eine Person ist im Badezimmer gestürzt, die Tür ist versperrt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Dringende Türöffnung, verletzte Person.",
+            "requiredResources": ["DOOR_OPENING_KIT","LIGHTING"]
+        },
+        {
+            "type": "T02-Türöffnung",
+            "callingNumber": "+436600000202",
+            "callText": "Kind allein in Wohnung eingeschlossen, Herd eingeschaltet.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Türöffnung, Gefahr im Verzug.",
+            "requiredResources": ["DOOR_OPENING_KIT"]
+        },
+        {
+            "type": "T02-Türöffnung",
+            "callingNumber": "+436600000203",
+            "callText": "Lift steckt zwischen zwei Stockwerken fest.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Liftöffnung.",
+            "requiredResources": ["DOOR_OPENING_KIT","LIGHTING"]
+        },
+        {
+            "type": "T02-Türöffnung",
+            "callingNumber": "+436600000204",
+            "callText": "Hilferufe aus versperrter Wohnung hörbar.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Türöffnung, Person in Notlage.",
+            "requiredResources": ["DOOR_OPENING_KIT"]
+        },
+        {
+            "type": "T02-Türöffnung",
+            "callingNumber": "+436600000205",
+            "callText": "Bewohner reagiert nicht, Post stapelt sich.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Türöffnung, unklare Lage.",
+            "requiredResources": ["DOOR_OPENING_KIT","LIGHTING"]
+        },
+
+        {
+            "type": "T03-VU-Berg.Öl.",
+            "callingNumber": "+436600000301",
+            "callText": "PKW steckt im Straßengraben, keine Verletzten.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Fahrzeugbergung.",
+            "requiredResources": ["WINCH","LIGHTING"]
+        },
+        {
+            "type": "T03-VU-Berg.Öl.",
+            "callingNumber": "+436600000302",
+            "callText": "Motorrad verliert Öl nach Sturz.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Ölspur nach Motorradsturz.",
+            "requiredResources": ["OIL_SPILL","LIGHTING"]
+        },
+        {
+            "type": "T03-VU-Berg.Öl.",
+            "callingNumber": "+436600000303",
+            "callText": "Lieferwagen im Schnee hängen geblieben.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Fahrzeugbergung winterlich.",
+            "requiredResources": ["WINCH","LIGHTING"]
+        },
+        {
+            "type": "T03-VU-Berg.Öl.",
+            "callingNumber": "+436600000304",
+            "callText": "Ölspur nach Auffahrunfall ohne Verletzte.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Betriebsmittel auf Fahrbahn.",
+            "requiredResources": ["OIL_SPILL","LIGHTING"]
+        },
+        {
+            "type": "T03-VU-Berg.Öl.",
+            "callingNumber": "+436600000305",
+            "callText": "PKW aufgesessen, kommt nicht mehr frei.",
+            "initialRadioMessage": "Einsatzsofortmeldung: PKW aufgesessen.",
+            "requiredResources": ["WINCH","LIGHTING"]
+        },
+
+        {
+            "type": "T03-VU-mit-Verl.",
+            "callingNumber": "+436600000401",
+            "callText": "Auffahrunfall, Person klagt über Nackenschmerzen.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Verkehrsunfall mit Verletzten.",
+            "requiredResources": ["SPINE_BOARD","LIGHTING","OIL_SPILL"]
+        },
+        {
+            "type": "T03-VU-mit-Verl.",
+            "callingNumber": "+436600000402",
+            "callText": "Motorradfahrer gestürzt und verletzt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Motorradunfall mit Verletzten.",
+            "requiredResources": ["SPINE_BOARD","OIL_SPILL","LIGHTING"]
+        },
+        {
+            "type": "T03-VU-mit-Verl.",
+            "callingNumber": "+436600000403",
+            "callText": "PKW gegen Leitplanke, Fahrer verletzt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: VU mit verletzter Person.",
+            "requiredResources": ["SPINE_BOARD","LIGHTING"]
+        },
+        {
+            "type": "T03-VU-mit-Verl.",
+            "callingNumber": "+436600000404",
+            "callText": "Kreuzungsunfall, eine Person verletzt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Verkehrsunfall mit Verletzten.",
+            "requiredResources": ["SPINE_BOARD","LIGHTING","OIL_SPILL"]
+        },
+        {
+            "type": "T03-VU-mit-Verl.",
+            "callingNumber": "+436600000405",
+            "callText": "PKW Überschlag, Fahrer verletzt aber nicht eingeklemmt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Überschlag mit Verletzten.",
+            "requiredResources": ["SPINE_BOARD","WINCH","LIGHTING"]
+        },
+
+        {
+            "type": "T04-Pumparbeiten",
+            "callingNumber": "+436600000501",
+            "callText": "Keller nach Starkregen überflutet.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Pumparbeiten Keller.",
+            "requiredResources": ["FIRE_PUMP","WATER_DAMAGE_KIT","LIGHTING"]
+        },
+        {
+            "type": "T04-Pumparbeiten",
+            "callingNumber": "+436600000502",
+            "callText": "Tiefgarage steht unter Wasser.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Pumparbeiten Tiefgarage.",
+            "requiredResources": ["FIRE_PUMP","LIGHTING"]
+        },
+        {
+            "type": "T04-Pumparbeiten",
+            "callingNumber": "+436600000503",
+            "callText": "Wasserrohrbruch im Wohnhaus.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Wasserschaden Gebäude.",
+            "requiredResources": ["FIRE_PUMP","WATER_DAMAGE_KIT"]
+        },
+        {
+            "type": "T04-Pumparbeiten",
+            "callingNumber": "+436600000504",
+            "callText": "Unterführung überflutet.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Pumparbeiten Unterführung.",
+            "requiredResources": ["FIRE_PUMP","LIGHTING"]
+        },
+        {
+            "type": "T04-Pumparbeiten",
+            "callingNumber": "+436600000505",
+            "callText": "Wasser in Werkshalle eingedrungen.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Pumparbeiten Industriehalle.",
+            "requiredResources": ["FIRE_PUMP","WATER_DAMAGE_KIT","LIGHTING"]
+        },
+
+        {
+            "type": "T05-Insektenbekämpfung",
+            "callingNumber": "+436600000601",
+            "callText": "Wespennest am Balkon.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Insekteneinsatz.",
+            "requiredResources": ["INSECT_KIT"]
+        },
+        {
+            "type": "T05-Insektenbekämpfung",
+            "callingNumber": "+436600000602",
+            "callText": "Hornissennest beim Hauseingang.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Insektenbekämpfung.",
+            "requiredResources": ["INSECT_KIT"]
+        },
+        {
+            "type": "T05-Insektenbekämpfung",
+            "callingNumber": "+436600000603",
+            "callText": "Wespennest in Rollladenkasten.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Insekteneinsatz.",
+            "requiredResources": ["INSECT_KIT"]
+        },
+        {
+            "type": "T05-Insektenbekämpfung",
+            "callingNumber": "+436600000604",
+            "callText": "Bienen im Dachbereich.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Insekteneinsatz.",
+            "requiredResources": ["INSECT_KIT"]
+        },
+        {
+            "type": "T05-Insektenbekämpfung",
+            "callingNumber": "+436600000605",
+            "callText": "Wespennest im Kindergartenbereich.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Insekteneinsatz mit Gefahr.",
+            "requiredResources": ["INSECT_KIT"]
+        },
+
+        {
+            "type": "T07-Unwetter",
+            "callingNumber": "+436600000701",
+            "callText": "Baum über Straße.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Unwetterschaden.",
+            "requiredResources": ["CHAINSAW","LIGHTING","WINCH"]
+        },
+        {
+            "type": "T07-Unwetter",
+            "callingNumber": "+436600000702",
+            "callText": "Mehrere Keller überflutet.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Unwettereinsatz Wasser.",
+            "requiredResources": ["FIRE_PUMP","LIGHTING"]
+        },
+        {
+            "type": "T07-Unwetter",
+            "callingNumber": "+436600000703",
+            "callText": "Baum auf Stromleitung gefallen.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Unwetterschaden.",
+            "requiredResources": ["CHAINSAW","LIGHTING"]
+        },
+        {
+            "type": "T07-Unwetter",
+            "callingNumber": "+436600000704",
+            "callText": "Straße stark verschlammt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Unwettereinsatz.",
+            "requiredResources": ["SMALL_WATER_TANK_LESS_THAN_1_000_L","LIGHTING"]
+        },
+        {
+            "type": "T07-Unwetter",
+            "callingNumber": "+436600000705",
+            "callText": "Baum droht auf Haus zu stürzen.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Gefährlicher Baum.",
+            "requiredResources": ["CHAINSAW","WINCH","LIGHTING"]
+        },
+
+        {
+            "type": "T08-Tierrettung",
+            "callingNumber": "+436600000801",
+            "callText": "Katze auf Baum.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Tierrettung.",
+            "requiredResources": ["LADDER"]
+        },
+        {
+            "type": "T08-Tierrettung",
+            "callingNumber": "+436600000802",
+            "callText": "Hund in Bach geraten.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Tierrettung.",
+            "requiredResources": ["WINCH","LIGHTING"]
+        },
+        {
+            "type": "T08-Tierrettung",
+            "callingNumber": "+436600000803",
+            "callText": "Kuh in Güllegrube.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Großtierrettung.",
+            "requiredResources": ["WINCH","LIGHTING"]
+        },
+        {
+            "type": "T08-Tierrettung",
+            "callingNumber": "+436600000804",
+            "callText": "Reh in Zaun eingeklemmt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Tierrettung.",
+            "requiredResources": ["WINCH","LIGHTING"]
+        },
+        {
+            "type": "T08-Tierrettung",
+            "callingNumber": "+436600000805",
+            "callText": "Schaf in Graben gestürzt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Tierrettung.",
+            "requiredResources": ["WINCH","LIGHTING"]
+        },
+
+        {
+            "type": "T10-VU-eingeklemmt",
+            "callingNumber": "+436600000901",
+            "callText": "PKW frontal gegen Baum, Fahrer eingeklemmt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Eingeklemmte Person.",
+            "requiredResources": ["HYDRAULIC_SPREADER","SPINE_BOARD","WINCH","LIGHTING","OIL_SPILL"]
+        },
+        {
+            "type": "T10-VU-eingeklemmt",
+            "callingNumber": "+436600000902",
+            "callText": "LKW und PKW kollidiert, Person eingeklemmt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Schwerer VU.",
+            "requiredResources": ["HYDRAULIC_SPREADER","SPINE_BOARD","LIGHTING","OIL_SPILL"]
+        },
+        {
+            "type": "T10-VU-eingeklemmt",
+            "callingNumber": "+436600000903",
+            "callText": "PKW Überschlag, Fahrer eingeklemmt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Überschlag mit eingeklemmter Person.",
+            "requiredResources": ["HYDRAULIC_SPREADER","SPINE_BOARD","WINCH","LIGHTING"]
+        },
+        {
+            "type": "T10-VU-eingeklemmt",
+            "callingNumber": "+436600000904",
+            "callText": "Frontalzusammenstoß, Person eingeklemmt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: VU eingeklemmt.",
+            "requiredResources": ["HYDRAULIC_SPREADER","SPINE_BOARD","LIGHTING","OIL_SPILL"]
+        },
+        {
+            "type": "T10-VU-eingeklemmt",
+            "callingNumber": "+436600000905",
+            "callText": "PKW unter LKW geraten, Fahrer eingeklemmt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Schwerer Verkehrsunfall.",
+            "requiredResources": ["HYDRAULIC_SPREADER","SPINE_BOARD","WINCH","LIGHTING"]
+        },
+
+        {
+            "type": "T11-Menschenrettung",
+            "callingNumber": "+436600001001",
+            "callText": "Arbeiter in Maschine eingeklemmt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Menschenrettung Maschine.",
+            "requiredResources": ["HYDRAULIC_SPREADER","SPINE_BOARD","LIGHTING","VENTILATION"]
+        },
+        {
+            "type": "T11-Menschenrettung",
+            "callingNumber": "+436600001002",
+            "callText": "Person in Schacht gestürzt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Menschenrettung.",
+            "requiredResources": ["WINCH","SPINE_BOARD","LIGHTING"]
+        },
+        {
+            "type": "T11-Menschenrettung",
+            "callingNumber": "+436600001003",
+            "callText": "Person unter Gabelstapler eingeklemmt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Menschenrettung Industrie.",
+            "requiredResources": ["HYDRAULIC_SPREADER","SPINE_BOARD","LIGHTING"]
+        },
+        {
+            "type": "T11-Menschenrettung",
+            "callingNumber": "+436600001004",
+            "callText": "Person in Lift stecken geblieben.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Menschenrettung Lift.",
+            "requiredResources": ["DOOR_OPENING_KIT","LIGHTING"]
+        },
+        {
+            "type": "T11-Menschenrettung",
+            "callingNumber": "+436600001005",
+            "callText": "Person in Grube verschüttet.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Menschenrettung.",
+            "requiredResources": ["WINCH","SPINE_BOARD","LIGHTING"]
+        },
+
+        {
+            "type": "T12-Busunfall",
+            "callingNumber": "+436600001101",
+            "callText": "Bus von Straße abgekommen, mehrere Verletzte.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Busunfall.",
+            "requiredResources": ["SPINE_BOARD","LIGHTING","OIL_SPILL","WINCH"]
+        },
+        {
+            "type": "T12-Busunfall",
+            "callingNumber": "+436600001102",
+            "callText": "Reisebus in Graben gerutscht.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Busunfall.",
+            "requiredResources": ["WINCH","SPINE_BOARD","LIGHTING"]
+        },
+        {
+            "type": "T12-Busunfall",
+            "callingNumber": "+436600001103",
+            "callText": "Bus und PKW kollidiert.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Busunfall.",
+            "requiredResources": ["SPINE_BOARD","LIGHTING","OIL_SPILL"]
+        },
+        {
+            "type": "T12-Busunfall",
+            "callingNumber": "+436600001104",
+            "callText": "Schulbus rutscht bei Glätte.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Busunfall.",
+            "requiredResources": ["WINCH","LIGHTING"]
+        },
+        {
+            "type": "T12-Busunfall",
+            "callingNumber": "+436600001105",
+            "callText": "Bus fährt gegen Leitschiene.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Busunfall.",
+            "requiredResources": ["SPINE_BOARD","LIGHTING"]
+        },
+
+        {
+            "type": "T12-Bahn",
+            "callingNumber": "+436600001201",
+            "callText": "Zug bleibt nach Kollision mit Baum stehen.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Bahnunfall.",
+            "requiredResources": ["CHAINSAW","LIGHTING"]
+        },
+        {
+            "type": "T12-Bahn",
+            "callingNumber": "+436600001202",
+            "callText": "Person von Zug erfasst.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Bahnunfall mit Verletzten.",
+            "requiredResources": ["SPINE_BOARD","LIGHTING"]
+        },
+        {
+            "type": "T12-Bahn",
+            "callingNumber": "+436600001203",
+            "callText": "Zug evakuiert wegen Rauchentwicklung.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Bahneinsatz.",
+            "requiredResources": ["VENTILATION","LIGHTING"]
+        },
+        {
+            "type": "T12-Bahn",
+            "callingNumber": "+436600001204",
+            "callText": "Güterzug verliert Betriebsstoff.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Bahnunfall Schadstoff.",
+            "requiredResources": ["OIL_SPILL","LIGHTING","GAS_EXWARN"]
+        },
+        {
+            "type": "T12-Bahn",
+            "callingNumber": "+436600001205",
+            "callText": "Zug bleibt im Tunnel stehen.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Bahneinsatz Tunnel.",
+            "requiredResources": ["VENTILATION","LIGHTING"]
+        },
+
+        {
+            "type": "T16-Flugunfall",
+            "callingNumber": "+436600001301",
+            "callText": "Kleinflugzeug Notlandung auf Feld.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Flugunfall.",
+            "requiredResources": ["SMALL_WATER_TANK_LESS_THAN_1_000_L","OIL_SPILL","LIGHTING"]
+        },
+        {
+            "type": "T16-Flugunfall",
+            "callingNumber": "+436600001302",
+            "callText": "Helikopter hart gelandet.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Flugunfall.",
+            "requiredResources": ["SMALL_WATER_TANK_LESS_THAN_1_000_L","LIGHTING"]
+        },
+        {
+            "type": "T16-Flugunfall",
+            "callingNumber": "+436600001303",
+            "callText": "Sportflugzeug im Wald abgestürzt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Flugzeugabsturz.",
+            "requiredResources": ["CHAINSAW","OIL_SPILL","LIGHTING"]
+        },
+        {
+            "type": "T16-Flugunfall",
+            "callingNumber": "+436600001304",
+            "callText": "Segelflieger Bruchlandung.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Flugunfall.",
+            "requiredResources": ["WINCH","LIGHTING"]
+        },
+        {
+            "type": "T16-Flugunfall",
+            "callingNumber": "+436600001305",
+            "callText": "Kleinflugzeug in Bach abgestürzt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Flugunfall.",
+            "requiredResources": ["OIL_SPILL","LIGHTING","WINCH"]
+        },
+
+        {
+            "type": "T17-Schadstoff",
+            "callingNumber": "+436600001401",
+            "callText": "Diesel läuft aus LKW in Bach.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Schadstoffaustritt.",
+            "requiredResources": ["OIL_SPILL","GAS_EXWARN","LIGHTING"]
+        },
+        {
+            "type": "T17-Schadstoff",
+            "callingNumber": "+436600001402",
+            "callText": "Chemikalienkanister beschädigt.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Schadstoffaustritt.",
+            "requiredResources": ["GAS_EXWARN","VENTILATION","LIGHTING"]
+        },
+        {
+            "type": "T17-Schadstoff",
+            "callingNumber": "+436600001403",
+            "callText": "Ölfilm auf Fluss sichtbar.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Gewässerverunreinigung.",
+            "requiredResources": ["OIL_SPILL","LIGHTING"]
+        },
+        {
+            "type": "T17-Schadstoff",
+            "callingNumber": "+436600001404",
+            "callText": "Unbekannter Geruch in Lagerhalle.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Schadstoffverdacht.",
+            "requiredResources": ["GAS_EXWARN","VENTILATION","LIGHTING"]
+        },
+        {
+            "type": "T17-Schadstoff",
+            "callingNumber": "+436600001405",
+            "callText": "Tank beschädigt, Flüssigkeit tritt aus.",
+            "initialRadioMessage": "Einsatzsofortmeldung: Schadstoffaustritt.",
+            "requiredResources": ["OIL_SPILL","GAS_EXWARN","LIGHTING"]
+        }
+    ]
+}
